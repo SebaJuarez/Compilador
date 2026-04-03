@@ -1,0 +1,15 @@
+program
+    _x = 10
+    _y = 20
+    _resultado = _x + _y
+    if (_resultado > 15) {
+        _resultado = _resultado * 2
+        put(_resultado)
+    }
+    while (_x < _y) {
+        _x = _x + 1
+        put(_x)
+    }
+    _cant = cant[2, 4, 7, 8, 3, 6]
+    put(_cant)
+end
