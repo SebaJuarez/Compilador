@@ -279,7 +279,7 @@ public class VentanaCompilador extends JFrame {
         setEstado("⟳  Compilando...", ACCENT);
         btnEjecutar.setEnabled(false);
 
-        SwingWorker<Void, Void> worker = new SwingWorker<>() {
+        SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
             String dotOutput   = "";
             boolean exito      = false;
 
@@ -293,7 +293,7 @@ public class VentanaCompilador extends JFrame {
 
                     FileReader fr = new FileReader(ruta);
                     ComplexSymbolFactory sf = new ComplexSymbolFactory();
-                    Lexico lexico = new Lexico(fr);
+                    Lexico lexico = new Lexico(fr, sf);
                     parser p = new parser(lexico, sf);
 
                     System.out.println("[ Análisis léxico y sintáctico ]\n");

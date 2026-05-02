@@ -1,5 +1,8 @@
 package compilador;
 import java_cup.runtime.Symbol;
+import java_cup.runtime.ComplexSymbolFactory;
+import java_cup.runtime.ComplexSymbolFactory.ComplexSymbol;
+import java_cup.runtime.ComplexSymbolFactory.Location;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -28,10 +31,35 @@ import java.util.ArrayList;
 
 
 %{
+	private ComplexSymbolFactory csf;
+
+	public Lexico(java.io.Reader in, ComplexSymbolFactory sf) {
+		this(in);
+		this.csf = sf;
+	}
+
+	private Symbol symbol(int type) {
+		if (csf != null) {
+			Location left  = new Location(yyline + 1, yycolumn + 1, yychar);
+			Location right = new Location(yyline + 1, yycolumn + yylength(), yychar + yylength());
+			return csf.newSymbol(sym.terminalNames[type], type, left, right);
+		}
+		return new Symbol(type);
+	}
+
+	private Symbol symbol(int type, Object value) {
+		if (csf != null) {
+			Location left  = new Location(yyline + 1, yycolumn + 1, yychar);
+			Location right = new Location(yyline + 1, yycolumn + yylength(), yychar + yylength());
+			return csf.newSymbol(sym.terminalNames[type], type, left, right, value);
+		}
+		return new Symbol(type, value);
+	}
+
 	BufferedWriter bw;
 	File f;
 	ArrayList<String> simbolsList;
-	
+
 	public void writeSymbolInTable(String s) throws IOException{
 		if(!simbolsList.contains(s.split(",")[0])){
 			bw.write(s);
@@ -40,22 +68,22 @@ import java.util.ArrayList;
 			simbolsList.add(s.split(",")[0]);
 		}
 	}
-	
+
 	public String s = "";
 	final int MAX_STRING = 30;
     final int MAX_INT = 32767;
-	
 
-	private boolean validate_string(String textString) throws Exception {
+
+	private boolean validate_string(String textString) {
 		if (textString.length() > MAX_STRING) {
-			throw new Exception("La longitud del lexema "+textString+" excede la esperada");
+			throw new RuntimeException("La longitud del lexema "+textString+" excede la esperada");
 		}
 		return true;
 	}
 
-    private boolean validate_int_number(String numberInt) throws Exception {
+    private boolean validate_int_number(String numberInt) {
 		if (Integer.parseInt(numberInt) > MAX_INT || Integer.parseInt(numberInt) < - MAX_INT) {
-			throw new Exception("El numero entero del lexema "+numberInt+" excede el esperado");
+			throw new RuntimeException("El numero entero del lexema "+numberInt+" excede el esperado");
 		}
 		return true;
 	}
@@ -114,63 +142,63 @@ CANT = cant | CANT
     
     {VARIABLE}   {
         writeSymbolInTable(yytext() + ",VARIABLE,,_,_");
-        return new Symbol(sym.VARIABLE, yytext());
+        return symbol(sym.VARIABLE, yytext());
     }
     {NUMENT} {
         validate_int_number(yytext());
         writeSymbolInTable("_"+yytext()+", NUMENT , _ , "+yytext()+" , _ ");
-        return new Symbol(sym.NUMENT, yytext());
+        return symbol(sym.NUMENT, yytext());
     }
     {NUMREAL}  {
         writeSymbolInTable("_"+yytext()+", NUMREAL , _ , "+yytext()+" , _ ");
-        return new Symbol(sym.NUMREAL, yytext());
-    }       
-    
-    {IF}       { return new Symbol(sym.IF, yytext()); }
-    {ELSE}     { return new Symbol(sym.ELSE, yytext()); }
-    {WHILE}    { return new Symbol(sym.WHILE, yytext()); }
-    {DECVAR}   { return new Symbol(sym.DECVAR, yytext()); }
-    {ENDECVAR} { return new Symbol(sym.ENDECVAR, yytext()); }
-    {PROGRAM}  { return new Symbol(sym.PROGRAM, yytext()); }
-    {END}      { return new Symbol(sym.END, yytext()); }
-    {PUT}      { return new Symbol(sym.PUT, yytext()); }
+        return symbol(sym.NUMREAL, yytext());
+    }
+
+    {IF}       { return symbol(sym.IF, yytext()); }
+    {ELSE}     { return symbol(sym.ELSE, yytext()); }
+    {WHILE}    { return symbol(sym.WHILE, yytext()); }
+    {DECVAR}   { return symbol(sym.DECVAR, yytext()); }
+    {ENDECVAR} { return symbol(sym.ENDECVAR, yytext()); }
+    {PROGRAM}  { return symbol(sym.PROGRAM, yytext()); }
+    {END}      { return symbol(sym.END, yytext()); }
+    {PUT}      { return symbol(sym.PUT, yytext()); }
     {VALSTRING} {
         validate_string(yytext());
         writeSymbolInTable("_"+yytext().substring(1, yytext().length() - 1)+ ", VALSTRING , _ ,"+yytext().substring(1, yytext().length() - 1)+","+ yytext().substring(1, yytext().length() - 1).length());
-        return new Symbol(sym.VALSTRING, yytext());
+        return symbol(sym.VALSTRING, yytext());
     }
-    {STRING}   { return new Symbol(sym.STRING, yytext()); }
-    {FLOAT}    { return new Symbol(sym.FLOAT, yytext()); }
-    {INT}      { return new Symbol(sym.INT, yytext()); }
-    {CANT}     { return new Symbol(sym.CANT, yytext()); }
+    {STRING}   { return symbol(sym.STRING, yytext()); }
+    {FLOAT}    { return symbol(sym.FLOAT, yytext()); }
+    {INT}      { return symbol(sym.INT, yytext()); }
+    {CANT}     { return symbol(sym.CANT, yytext()); }
 
-    {OPSUMA}   { return new Symbol(sym.OPSUMA, yytext()); }
-    {OPRESTA}  { return new Symbol(sym.OPRESTA, yytext()); }
-    {OPMULTI}  { return new Symbol(sym.OPMULTI, yytext()); }
-    {OPDIV}    { return new Symbol(sym.OPDIV, yytext()); }
-    {COMA}     { return new Symbol(sym.COMA, yytext()); }
-    {PUNTOC}   { return new Symbol(sym.PUNTOC, yytext()); }
-    {PUNTOPUNTO} { return new Symbol(sym.PUNTOPUNTO, yytext()); }
-    {OPMOD}    { return new Symbol(sym.OPMOD, yytext()); }
-    {PAR_A}    { return new Symbol(sym.PAR_A, yytext()); }
-    {PAR_C}    { return new Symbol(sym.PAR_C, yytext()); }
-    {LLAVE_A}  { return new Symbol(sym.LLAVE_A, yytext()); }
-    {LLAVE_C}  { return new Symbol(sym.LLAVE_C, yytext()); }
-    {CORCH_A}  { return new Symbol(sym.CORCH_A, yytext()); }
-    {CORCH_C}  { return new Symbol(sym.CORCH_C, yytext()); }
-    {MENOR_A}  { return new Symbol(sym.MENOR_A, yytext()); }
-    {MAYOR_A}  { return new Symbol(sym.MAYOR_A, yytext()); }
-    {IGUAL_A}  { return new Symbol(sym.IGUAL_A, yytext()); }
-    {MENOR_I}  { return new Symbol(sym.MENOR_I, yytext()); }
-    {MAYOR_I}  { return new Symbol(sym.MAYOR_I, yytext()); }
-    {DISTINTO} { return new Symbol(sym.DISTINTO, yytext()); }
-    {AND}      { return new Symbol(sym.AND, yytext()); }
-    {OR}       { return new Symbol(sym.OR, yytext()); }
-    {NOT}      { return new Symbol(sym.NOT, yytext()); }
-    {ASIGN}    { return new Symbol(sym.ASIGN, yytext()); }
+    {OPSUMA}   { return symbol(sym.OPSUMA); }
+    {OPRESTA}  { return symbol(sym.OPRESTA); }
+    {OPMULTI}  { return symbol(sym.OPMULTI); }
+    {OPDIV}    { return symbol(sym.OPDIV); }
+    {COMA}     { return symbol(sym.COMA); }
+    {PUNTOC}   { return symbol(sym.PUNTOC); }
+    {PUNTOPUNTO} { return symbol(sym.PUNTOPUNTO); }
+    {OPMOD}    { return symbol(sym.OPMOD); }
+    {PAR_A}    { return symbol(sym.PAR_A); }
+    {PAR_C}    { return symbol(sym.PAR_C); }
+    {LLAVE_A}  { return symbol(sym.LLAVE_A); }
+    {LLAVE_C}  { return symbol(sym.LLAVE_C); }
+    {CORCH_A}  { return symbol(sym.CORCH_A); }
+    {CORCH_C}  { return symbol(sym.CORCH_C); }
+    {MENOR_A}  { return symbol(sym.MENOR_A); }
+    {MAYOR_A}  { return symbol(sym.MAYOR_A); }
+    {IGUAL_A}  { return symbol(sym.IGUAL_A); }
+    {MENOR_I}  { return symbol(sym.MENOR_I); }
+    {MAYOR_I}  { return symbol(sym.MAYOR_I); }
+    {DISTINTO} { return symbol(sym.DISTINTO); }
+    {AND}      { return symbol(sym.AND); }
+    {OR}       { return symbol(sym.OR); }
+    {NOT}      { return symbol(sym.NOT); }
+    {ASIGN}    { return symbol(sym.ASIGN); }
     {COMENT_A} { }
     {ESPACIO}  { }
 }
 
 [^]  { throw new Error("Caracter no permitido: '" + yytext() + "' en la linea " + (yyline+1) + ", columna " + (yycolumn+1)); }
-<<EOF>> { return new Symbol(sym.EOF); }
+<<EOF>> { return symbol(sym.EOF); }
