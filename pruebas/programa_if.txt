@@ -1,0 +1,6 @@
+program
+    _x = 5
+    if((!!_x > 10) & (_x > 0)) {
+        put(_x)
+    }
+end

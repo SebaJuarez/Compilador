@@ -1,0 +1,6 @@
+program
+    _t1 = cant[]
+    put(_t1)
+    _t3 = cant[2, 4, 6, 8]
+    put(_t3)
+end
