@@ -130,8 +130,19 @@ public class VentanaCompilador extends JFrame {
         btnGraphviz.setFont(new Font("Segoe UI", Font.PLAIN, 11));
         btnGraphviz.addActionListener(e -> {
             try {
-                Desktop.getDesktop().browse(new java.net.URI("https://dreampuf.github.io/GraphvizOnline/"));
-            } catch (Exception ex) { /* ignorar */ }
+                String dotCode = taArbol.getText();
+                if (dotCode == null || dotCode.trim().isEmpty()) {
+                    return;
+                }
+                String encodedDot = java.net.URLEncoder
+                        .encode(dotCode, java.nio.charset.StandardCharsets.UTF_8.toString())
+                        .replace("+", "%20");
+
+                String url = "https://dreampuf.github.io/GraphvizOnline/#" + encodedDot;
+                java.awt.Desktop.getDesktop().browse(new java.net.URI(url));
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         });
 
         JPanel astWrapper = new JPanel(new BorderLayout(0, 4));

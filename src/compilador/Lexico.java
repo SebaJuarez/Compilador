@@ -306,8 +306,8 @@ public class Lexico implements java_cup.runtime.Scanner {
 
 	private Symbol symbol(int type) {
 		if (csf != null) {
-			Location left  = new Location(yyline + 1, yycolumn + 1, yychar);
-			Location right = new Location(yyline + 1, yycolumn + yylength(), yychar + yylength());
+			Location left  = new Location(yyline + 1, yycolumn + 1);
+			Location right = new Location(yyline + 1, yycolumn + yylength());
 			return csf.newSymbol(sym.terminalNames[type], type, left, right);
 		}
 		return new Symbol(type);
@@ -315,8 +315,8 @@ public class Lexico implements java_cup.runtime.Scanner {
 
 	private Symbol symbol(int type, Object value) {
 		if (csf != null) {
-			Location left  = new Location(yyline + 1, yycolumn + 1, yychar);
-			Location right = new Location(yyline + 1, yycolumn + yylength(), yychar + yylength());
+			Location left  = new Location(yyline + 1, yycolumn + 1);
+			Location right = new Location(yyline + 1, yycolumn + yylength());
 			return csf.newSymbol(sym.terminalNames[type], type, left, right, value);
 		}
 		return new Symbol(type, value);
