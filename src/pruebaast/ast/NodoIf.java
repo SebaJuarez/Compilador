@@ -31,7 +31,7 @@ public class NodoIf extends NodoSentencia {
 
         // Grafica las sentencias asociadas al "then" colgando del nodo ficticio THEN
         String idNodoThen = nodoThen.getIdNodo();
-        for (NodoSentencia sentencia: sentenciasThen) {
+        for (NodoSentencia sentencia : sentenciasThen) {
             resultado.append(sentencia.graficar(idNodoThen));
         }
 
@@ -43,7 +43,7 @@ public class NodoIf extends NodoSentencia {
 
             // Grafica las sentencias asociadas al "else" colgando del nodo ficticio ELSE
             String idNodoElse = nodoElse.getIdNodo();
-            for (NodoSentencia sentencia: sentenciasElse) {
+            for (NodoSentencia sentencia : sentenciasElse) {
                 resultado.append(sentencia.graficar(idNodoElse));
             }
         }

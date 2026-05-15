@@ -1,7 +1,7 @@
 package pruebaast.ast;
 
 public class Nodo {
-    private String descripcion;
+    private final String descripcion;
 
     public Nodo(String descripcion) {
         this.descripcion = descripcion;

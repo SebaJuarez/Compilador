@@ -1,26 +1,24 @@
-
 package pruebaast.ast;
 
-  
+
 public class NodoNot extends NodoExpresionBooleana {
-private final NodoExpresionBooleana izquierda;
+    private final NodoExpresionBooleana izquierda;
 
 
-
-public NodoNot (NodoExpresionBooleana izquierda) {
+    public NodoNot(NodoExpresionBooleana izquierda) {
         super("NOT");
         this.izquierda = izquierda;
-        
-      
+
+
     }
 
-@Override
+    @Override
     protected String graficar(String idPadre) {
         final String miId = this.getIdNodo();
         return super.graficar(idPadre) +
-                izquierda.graficar(miId) ;
+                izquierda.graficar(miId);
     }
-    
+
 
 }
 

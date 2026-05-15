@@ -10,6 +10,6 @@ public class NodoConstante extends NodoExpresion {
 
     @Override
     public String getDescripcionNodo() {
-        return "CTE: " + Integer.toString(valor);
+        return "CTE: " + valor;
     }
 }

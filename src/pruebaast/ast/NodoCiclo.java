@@ -5,13 +5,13 @@ import java.util.List;
 public class NodoCiclo extends NodoSentencia {
     private final NodoExpresionBooleana condicion;
     private final List<NodoSentencia> cuerpo;
-  
+
 
     public NodoCiclo(NodoExpresionBooleana condicion, List<NodoSentencia> cuerpo) {
         super("WHILE");
         this.condicion = condicion;
         this.cuerpo = cuerpo;
-       
+
     }
 
     @Override
@@ -31,7 +31,7 @@ public class NodoCiclo extends NodoSentencia {
 
         // Grafica las sentencias asociadas al "then" colgando del nodo ficticio THEN
         String idNodoThen = nodoThen.getIdNodo();
-        for (NodoSentencia sentencia: cuerpo) {
+        for (NodoSentencia sentencia : cuerpo) {
             resultado.append(sentencia.graficar(idNodoThen));
         }
 

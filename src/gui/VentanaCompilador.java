@@ -1,48 +1,52 @@
 package gui;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.io.*;
-import java.nio.file.*;
-import javax.swing.*;
-import javax.swing.border.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
-
 import compilador.Lexico;
 import compilador.parser;
 import java_cup.runtime.ComplexSymbolFactory;
 import pruebaast.ast.NodoPrograma;
+
+import javax.swing.*;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.MatteBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 
 public class VentanaCompilador extends JFrame {
 
     private static final long serialVersionUID = 1L;
 
     // ── Colores y fuentes ──────────────────────────────────────────────────────
-    private static final Color BG_DARK      = new Color(18, 20, 28);
-    private static final Color BG_PANEL     = new Color(26, 29, 42);
-    private static final Color BG_INPUT     = new Color(34, 38, 55);
-    private static final Color ACCENT       = new Color(99, 179, 237);
-    private static final Color ACCENT2      = new Color(72, 199, 142);
-    private static final Color TEXT_MAIN    = new Color(226, 232, 240);
-    private static final Color TEXT_DIM     = new Color(113, 128, 150);
+    private static final Color BG_DARK = new Color(18, 20, 28);
+    private static final Color BG_PANEL = new Color(26, 29, 42);
+    private static final Color BG_INPUT = new Color(34, 38, 55);
+    private static final Color ACCENT = new Color(99, 179, 237);
+    private static final Color ACCENT2 = new Color(72, 199, 142);
+    private static final Color TEXT_MAIN = new Color(226, 232, 240);
+    private static final Color TEXT_DIM = new Color(113, 128, 150);
     private static final Color BORDER_COLOR = new Color(45, 55, 72);
-    private static final Color BTN_HOVER    = new Color(66, 153, 225);
-    private static final Color ERR_COLOR    = new Color(252, 129, 129);
+    private static final Color BTN_HOVER = new Color(66, 153, 225);
+    private static final Color ERR_COLOR = new Color(252, 129, 129);
 
-    private static final Font FONT_MONO   = new Font("Courier New", Font.PLAIN, 13);
-    private static final Font FONT_TITLE  = new Font("Segoe UI", Font.BOLD, 20);
-    private static final Font FONT_LABEL  = new Font("Segoe UI", Font.PLAIN, 12);
-    private static final Font FONT_BTN    = new Font("Segoe UI", Font.BOLD, 13);
+    private static final Font FONT_MONO = new Font("Courier New", Font.PLAIN, 13);
+    private static final Font FONT_TITLE = new Font("Segoe UI", Font.BOLD, 20);
+    private static final Font FONT_LABEL = new Font("Segoe UI", Font.PLAIN, 12);
+    private static final Font FONT_BTN = new Font("Segoe UI", Font.BOLD, 13);
 
     // ── Componentes ────────────────────────────────────────────────────────────
     private JTextField txtRuta;
-    private JButton    btnSeleccionar;
-    private JButton    btnEjecutar;
-    private JButton    btnLimpiar;
-    private JTextArea  taConsola;
-    private JTextArea  taArbol;
-    private JTextArea  taCodigo;
-    private JLabel     lblEstado;
+    private JButton btnSeleccionar;
+    private JButton btnEjecutar;
+    private JButton btnLimpiar;
+    private JTextArea taConsola;
+    private JTextArea taArbol;
+    private JTextArea taCodigo;
+    private JLabel lblEstado;
 
     // ── Constructor ────────────────────────────────────────────────────────────
     public VentanaCompilador() {
@@ -54,12 +58,21 @@ public class VentanaCompilador extends JFrame {
         getContentPane().setBackground(BG_DARK);
         setLayout(new BorderLayout(0, 0));
 
-        add(buildHeader(),  BorderLayout.NORTH);
-        add(buildCenter(),  BorderLayout.CENTER);
-        add(buildFooter(),  BorderLayout.SOUTH);
+        add(buildHeader(), BorderLayout.NORTH);
+        add(buildCenter(), BorderLayout.CENTER);
+        add(buildFooter(), BorderLayout.SOUTH);
 
         redirigirSysOut();
         setVisible(true);
+    }
+
+    // ── Main ───────────────────────────────────────────────────────────────────
+    static void main(String[] args) {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception ignored) {
+        }
+        SwingUtilities.invokeLater(VentanaCompilador::new);
     }
 
     // ── Header ─────────────────────────────────────────────────────────────────
@@ -67,8 +80,8 @@ public class VentanaCompilador extends JFrame {
         JPanel header = new JPanel(new BorderLayout(16, 0));
         header.setBackground(BG_PANEL);
         header.setBorder(new CompoundBorder(
-            new MatteBorder(0, 0, 1, 0, BORDER_COLOR),
-            new EmptyBorder(14, 20, 14, 20)));
+                new MatteBorder(0, 0, 1, 0, BORDER_COLOR),
+                new EmptyBorder(14, 20, 14, 20)));
 
         // Título izquierda
         JLabel title = new JLabel("⟨/⟩  Compiladores 2026");
@@ -91,12 +104,12 @@ public class VentanaCompilador extends JFrame {
         txtRuta.setCaretColor(ACCENT);
         txtRuta.setFont(FONT_LABEL);
         txtRuta.setBorder(BorderFactory.createCompoundBorder(
-            BorderFactory.createLineBorder(BORDER_COLOR, 1),
-            BorderFactory.createEmptyBorder(4, 8, 4, 8)));
+                BorderFactory.createLineBorder(BORDER_COLOR, 1),
+                BorderFactory.createEmptyBorder(4, 8, 4, 8)));
 
         btnSeleccionar = createButton("📂 Seleccionar", ACCENT, BG_INPUT);
-        btnEjecutar    = createButton("▶  Ejecutar",    ACCENT2, new Color(30, 80, 50));
-        btnLimpiar     = createButton("✕ Limpiar",      TEXT_DIM, BG_INPUT);
+        btnEjecutar = createButton("▶  Ejecutar", ACCENT2, new Color(30, 80, 50));
+        btnLimpiar = createButton("✕ Limpiar", TEXT_DIM, BG_INPUT);
 
         btnSeleccionar.addActionListener(e -> seleccionarArchivo());
         btnEjecutar.addActionListener(e -> ejecutar());
@@ -116,8 +129,8 @@ public class VentanaCompilador extends JFrame {
     private JSplitPane buildCenter() {
         // Izquierda: código fuente + consola
         JSplitPane leftSplit = new JSplitPane(JSplitPane.VERTICAL_SPLIT,
-            buildPanel("📄 Código Fuente", taCodigo  = buildTextArea(FONT_MONO, TEXT_MAIN)),
-            buildPanel("🖥  Consola / Traza", taConsola = buildTextArea(FONT_MONO, new Color(180, 210, 180))));
+                buildPanel("📄 Código Fuente", taCodigo = buildTextArea(FONT_MONO, TEXT_MAIN)),
+                buildPanel("🖥  Consola / Traza", taConsola = buildTextArea(FONT_MONO, new Color(180, 210, 180))));
         leftSplit.setDividerLocation(250);
         leftSplit.setDividerSize(5);
         leftSplit.setBackground(BG_DARK);
@@ -135,7 +148,7 @@ public class VentanaCompilador extends JFrame {
                     return;
                 }
                 String encodedDot = java.net.URLEncoder
-                        .encode(dotCode, java.nio.charset.StandardCharsets.UTF_8.toString())
+                        .encode(dotCode, StandardCharsets.UTF_8)
                         .replace("+", "%20");
 
                 String url = "https://dreampuf.github.io/GraphvizOnline/#" + encodedDot;
@@ -166,8 +179,8 @@ public class VentanaCompilador extends JFrame {
         JPanel footer = new JPanel(new BorderLayout());
         footer.setBackground(BG_PANEL);
         footer.setBorder(new CompoundBorder(
-            new MatteBorder(1, 0, 0, 0, BORDER_COLOR),
-            new EmptyBorder(6, 16, 6, 16)));
+                new MatteBorder(1, 0, 0, 0, BORDER_COLOR),
+                new EmptyBorder(6, 16, 6, 16)));
         lblEstado = new JLabel("Listo. Seleccioná un archivo .txt y presioná Ejecutar.");
         lblEstado.setFont(FONT_LABEL);
         lblEstado.setForeground(TEXT_DIM);
@@ -220,13 +233,18 @@ public class VentanaCompilador extends JFrame {
         btn.setForeground(fg);
         btn.setBackground(bg);
         btn.setBorder(BorderFactory.createCompoundBorder(
-            BorderFactory.createLineBorder(fg.darker(), 1),
-            BorderFactory.createEmptyBorder(6, 14, 6, 14)));
+                BorderFactory.createLineBorder(fg.darker(), 1),
+                BorderFactory.createEmptyBorder(6, 14, 6, 14)));
         btn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btn.setFocusPainted(false);
         btn.addMouseListener(new MouseAdapter() {
-            public void mouseEntered(MouseEvent e) { btn.setBackground(fg.darker()); }
-            public void mouseExited(MouseEvent e)  { btn.setBackground(bg); }
+            public void mouseEntered(MouseEvent e) {
+                btn.setBackground(fg.darker());
+            }
+
+            public void mouseExited(MouseEvent e) {
+                btn.setBackground(bg);
+            }
         });
         return btn;
     }
@@ -234,7 +252,8 @@ public class VentanaCompilador extends JFrame {
     // ── Redirigir System.out ───────────────────────────────────────────────────
     private void redirigirSysOut() {
         PrintStream ps = new PrintStream(new OutputStream() {
-            private StringBuilder linea = new StringBuilder();
+            private final StringBuilder linea = new StringBuilder();
+
             public void write(int b) {
                 char c = (char) b;
                 linea.append(c);
@@ -278,8 +297,8 @@ public class VentanaCompilador extends JFrame {
         if (ruta.isEmpty()) {
             setEstado("⚠  Primero seleccioná un archivo fuente.", ERR_COLOR);
             JOptionPane.showMessageDialog(this,
-                "Por favor seleccioná un archivo .txt primero.",
-                "Sin archivo", JOptionPane.WARNING_MESSAGE);
+                    "Por favor seleccioná un archivo .txt primero.",
+                    "Sin archivo", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
@@ -291,8 +310,8 @@ public class VentanaCompilador extends JFrame {
         btnEjecutar.setEnabled(false);
 
         SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
-            String dotOutput   = "";
-            boolean exito      = false;
+            String dotOutput = "";
+            boolean exito = false;
 
             @Override
             protected Void doInBackground() {
@@ -351,13 +370,5 @@ public class VentanaCompilador extends JFrame {
     private void setEstado(String msg, Color color) {
         lblEstado.setText(msg);
         lblEstado.setForeground(color);
-    }
-
-    // ── Main ───────────────────────────────────────────────────────────────────
-    public static void main(String[] args) {
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception ignored) {}
-        SwingUtilities.invokeLater(VentanaCompilador::new);
     }
 }
