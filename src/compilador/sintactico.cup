@@ -15,9 +15,82 @@ parser code{:
 action code
 {:
     public List<NodoSentencia> a;
-    public List<NodoSentencia> i;
-    public List<NodoSentencia> sentencias_cant;
-    public int contadorMultiplosDos = 0;
+
+    public int contadorCant = 0;
+    public String currentCantVar = "";
+
+    private static class ExprRes {
+        List<NodoSentencia> previas = new ArrayList<NodoSentencia>();
+        NodoExpresion expr;
+    }
+
+    private static class CondRes {
+        List<NodoSentencia> previas = new ArrayList<NodoSentencia>();
+        NodoExpresionBooleana cond;
+    }
+
+    private ExprRes simpleExpr(NodoExpresion e) {
+        ExprRes r = new ExprRes();
+        r.expr = e;
+        return r;
+    }
+
+    private CondRes simpleCond(NodoExpresionBooleana c) {
+        CondRes r = new CondRes();
+        r.cond = c;
+        return r;
+    }
+
+    private ExprRes construirCant(List<Integer> numeros) {
+        ExprRes r = new ExprRes();
+
+        String temporal = "__cant" + contadorCant++;
+        currentCantVar = temporal;
+
+        List<NodoSentencia> sentencias = new ArrayList<NodoSentencia>();
+
+        sentencias.add(
+            new NodoAsignacion(
+                new NodoIdentificador(temporal),
+                new NodoNumEnt(0)
+            )
+        );
+
+        for (Integer n : numeros) {
+            NodoExpresion resto = new NodoMod(
+                new NodoNumEnt(n),
+                new NodoNumEnt(2)
+            );
+
+            NodoExpresionBooleana cond = new NodoIgual(
+                resto,
+                new NodoNumEnt(0)
+            );
+
+            List<NodoSentencia> body = new ArrayList<NodoSentencia>();
+            body.add(
+                new NodoAsignacion(
+                    new NodoIdentificador(temporal),
+                    new NodoSuma(
+                        new NodoIdentificador(temporal),
+                        new NodoNumEnt(1)
+                    )
+                )
+            );
+
+            sentencias.add(new NodoIf(cond, body, null));
+        }
+
+        r.previas = sentencias;
+        r.expr = new NodoIdentificador(temporal);
+        return r;
+    }
+
+    private List<NodoSentencia> unir(List<NodoSentencia> a, List<NodoSentencia> b) {
+        List<NodoSentencia> res = new ArrayList<NodoSentencia>(a);
+        res.addAll(b);
+        return res;
+    }
 :}
 
 terminal PROGRAM, END, WHILE, IF, ELSE, PUT, CANT, AND, OR, NOT,
@@ -30,18 +103,16 @@ terminal String VARIABLE, VALSTRING, NUMENT, NUMREAL;
 
 non terminal NodoPrograma           pgm;
 non terminal List<NodoSentencia>    listadesentencias;
-non terminal NodoSentencia          lineadesentencia;
-non terminal NodoAsignacion         asign;
-non terminal NodoCiclo              while;
-non terminal NodoIf                 if;
-non terminal NodoPut                put;
-non terminal NodoExpresion          expresion, termino, factor;
-non terminal NodoExpresionBooleana  condicion;
-non terminal NodoExpresionBooleana  condicion_logica;
-non terminal NodoExpresionBooleana  condicion_operacion;
-non terminal NodoExpresionBooleana  condicion_condicionNot;
-non terminal NodoCant               cant;
-non terminal List<NodoSentencia>    lista;
+non terminal List<NodoSentencia>    lineadesentencia;
+non terminal List<NodoSentencia>    asign;
+non terminal List<NodoSentencia>    while;
+non terminal List<NodoSentencia>    if;
+non terminal List<NodoSentencia>    put;
+
+non terminal ExprRes                expresion, termino, factor, cant;
+non terminal CondRes                condicion, condicion_logica, condicion_operacion, condicion_condicionNot;
+
+non terminal List<Integer>          lista;
 
 start with pgm;
 
@@ -50,15 +121,13 @@ pgm ::= PROGRAM listadesentencias:ls END {:
             System.out.println("[Regla 1] Programa");
         :};
 
-listadesentencias ::= lineadesentencia:ls listadesentencias:lss {:
-                          lss.add(0, ls);
+listadesentencias ::= listadesentencias:lss lineadesentencia:ls {:
+                          lss.addAll(ls);
                           RESULT = lss;
                           System.out.println("[Regla 2] Lista de sentencias (multiples)");
                       :}
                     | lineadesentencia:ls {:
-                          a = new ArrayList<NodoSentencia>();
-                          a.add(ls);
-                          RESULT = a;
+                          RESULT = ls;
                           System.out.println("[Regla 3] Lista de sentencias (una)");
                       :};
 
@@ -80,36 +149,52 @@ lineadesentencia ::= asign:agn {:
                      :};
 
 asign ::= VARIABLE:vb ASIGN expresion:e {:
-              RESULT = new NodoAsignacion(new NodoIdentificador(vb), e);
+              List<NodoSentencia> res = new ArrayList<NodoSentencia>(e.previas);
+              res.add(new NodoAsignacion(new NodoIdentificador(vb), e.expr));
+              RESULT = res;
               System.out.println("[Regla 8] Asignacion: " + vb + " = expr");
           :};
 
 while ::= WHILE PAR_A condicion:c PAR_C LLAVE_A listadesentencias:lss LLAVE_C {:
-              RESULT = new NodoCiclo(c, lss);
+              List<NodoSentencia> res = new ArrayList<NodoSentencia>(c.previas);
+              res.add(new NodoCiclo(c.cond, lss));
+              RESULT = res;
               System.out.println("[Regla 9] While");
           :};
 
 if ::= IF PAR_A condicion:c PAR_C LLAVE_A listadesentencias:lss LLAVE_C {:
-           RESULT = new NodoIf(c, lss, null);
+           List<NodoSentencia> res = new ArrayList<NodoSentencia>(c.previas);
+           res.add(new NodoIf(c.cond, lss, null));
+           RESULT = res;
            System.out.println("[Regla 10] If sin Else");
        :}
      | IF PAR_A condicion:c PAR_C LLAVE_A listadesentencias:lss LLAVE_C
        ELSE LLAVE_A listadesentencias:lsse LLAVE_C {:
-           RESULT = new NodoIf(c, lss, lsse);
+           List<NodoSentencia> res = new ArrayList<NodoSentencia>(c.previas);
+           res.add(new NodoIf(c.cond, lss, lsse));
+           RESULT = res;
            System.out.println("[Regla 11] If con Else");
        :};
 
 put ::= PUT PAR_A expresion:e PAR_C {:
-            RESULT = new NodoPut(e);
+            List<NodoSentencia> res = new ArrayList<NodoSentencia>(e.previas);
+            res.add(new NodoPut(e.expr));
+            RESULT = res;
             System.out.println("[Regla 12] Put");
         :};
 
 expresion ::= expresion:e OPSUMA termino:t {:
-                  RESULT = new NodoSuma(e, t);
+                  ExprRes r = new ExprRes();
+                  r.previas = unir(e.previas, t.previas);
+                  r.expr = new NodoSuma(e.expr, t.expr);
+                  RESULT = r;
                   System.out.println("[Regla 13] Expresion: Suma");
               :}
             | expresion:e OPRESTA termino:t {:
-                  RESULT = new NodoResta(e, t);
+                  ExprRes r = new ExprRes();
+                  r.previas = unir(e.previas, t.previas);
+                  r.expr = new NodoResta(e.expr, t.expr);
+                  RESULT = r;
                   System.out.println("[Regla 14] Expresion: Resta");
               :}
             | termino:t {:
@@ -118,15 +203,24 @@ expresion ::= expresion:e OPSUMA termino:t {:
               :};
 
 termino ::= termino:t OPMULTI factor:f {:
-                RESULT = new NodoMultiplicacion(t, f);
+                ExprRes r = new ExprRes();
+                r.previas = unir(t.previas, f.previas);
+                r.expr = new NodoMultiplicacion(t.expr, f.expr);
+                RESULT = r;
                 System.out.println("[Regla 16] Termino: Multiplicacion");
             :}
           | termino:t OPDIV factor:f {:
-                RESULT = new NodoDivision(t, f);
+                ExprRes r = new ExprRes();
+                r.previas = unir(t.previas, f.previas);
+                r.expr = new NodoDivision(t.expr, f.expr);
+                RESULT = r;
                 System.out.println("[Regla 17] Termino: Division");
             :}
           | termino:t OPMOD factor:f {:
-                RESULT = new NodoMod(t, f);
+                ExprRes r = new ExprRes();
+                r.previas = unir(t.previas, f.previas);
+                r.expr = new NodoMod(t.expr, f.expr);
+                RESULT = r;
                 System.out.println("[Regla 18] Termino: Modulo");
             :}
           | factor:f {:
@@ -135,19 +229,19 @@ termino ::= termino:t OPMULTI factor:f {:
             :};
 
 factor ::= VARIABLE:vb {:
-               RESULT = new NodoIdentificador(vb);
+               RESULT = simpleExpr(new NodoIdentificador(vb));
                System.out.println("[Regla 20] Factor: Variable = " + vb);
            :}
          | NUMENT:ne {:
-               RESULT = new NodoNumEnt(Integer.parseInt(ne));
+               RESULT = simpleExpr(new NodoNumEnt(Integer.parseInt(ne)));
                System.out.println("[Regla 21] Factor: Entero = " + ne);
            :}
          | NUMREAL:nr {:
-               RESULT = new NodoNumReal(Float.parseFloat(nr));
+               RESULT = simpleExpr(new NodoNumReal(Float.parseFloat(nr)));
                System.out.println("[Regla 22] Factor: Real = " + nr);
            :}
          | VALSTRING:vs {:
-               RESULT = new NodoConstanteString(vs);
+               RESULT = simpleExpr(new NodoConstanteString(vs));
                System.out.println("[Regla 23] Factor: String = " + vs);
            :}
          | cant:ct {:
@@ -155,49 +249,31 @@ factor ::= VARIABLE:vb {:
                System.out.println("[Regla 24] Factor: Cant");
            :}
          | PAR_A expresion:e PAR_C {:
-               RESULT = e;
+               ExprRes r = new ExprRes();
+               r.previas = e.previas;
+               r.expr = e.expr;
+               RESULT = r;
                System.out.println("[Regla 25] Factor: (expresion)");
            :};
 
-cant ::= CANT CORCH_A lista:lss CORCH_C {:
-             NodoAsignacion init = new NodoAsignacion(new NodoIdentificador("suma"), new NodoNumEnt(0));
-             lss.add(0, init);
-             RESULT = new NodoCant(lss);
+cant ::= CANT CORCH_A lista:ln CORCH_C {:
+             RESULT = construirCant(ln);
              System.out.println("[Regla 26] Cant con lista");
          :}
        | CANT CORCH_A CORCH_C {:
-             i = new ArrayList<NodoSentencia>();
-             NodoAsignacion init = new NodoAsignacion(new NodoIdentificador("suma"), new NodoNumEnt(0));
-             i.add(init);
-             RESULT = new NodoCant(i);
+             RESULT = construirCant(new ArrayList<Integer>());
              System.out.println("[Regla 27] Cant con lista vacia");
          :};
 
 lista ::= lista:lss COMA NUMENT:ne {:
-              NodoIgual cond = new NodoIgual(
-                  new NodoMod(new NodoNumEnt(Integer.parseInt(ne)), new NodoNumEnt(2)),
-                  new NodoNumEnt(0));
-              NodoAsignacion inc = new NodoAsignacion(
-                  new NodoIdentificador("suma"),
-                  new NodoSuma(new NodoIdentificador("suma"), new NodoNumEnt(1)));
-              List<NodoSentencia> body = new ArrayList<NodoSentencia>();
-              body.add(inc);
-              lss.add(new NodoIf(cond, body, null));
+              lss.add(Integer.parseInt(ne));
               RESULT = lss;
               System.out.println("[Regla 28] Lista: agrega " + ne);
           :}
         | NUMENT:ne {:
-              NodoIgual cond = new NodoIgual(
-                  new NodoMod(new NodoNumEnt(Integer.parseInt(ne)), new NodoNumEnt(2)),
-                  new NodoNumEnt(0));
-              NodoAsignacion inc = new NodoAsignacion(
-                  new NodoIdentificador("suma"),
-                  new NodoSuma(new NodoIdentificador("suma"), new NodoNumEnt(1)));
-              List<NodoSentencia> body = new ArrayList<NodoSentencia>();
-              body.add(inc);
-              sentencias_cant = new ArrayList<NodoSentencia>();
-              sentencias_cant.add(new NodoIf(cond, body, null));
-              RESULT = sentencias_cant;
+              List<Integer> res = new ArrayList<Integer>();
+              res.add(Integer.parseInt(ne));
+              RESULT = res;
               System.out.println("[Regla 29] Lista: primer elemento " + ne);
           :};
 
@@ -211,36 +287,60 @@ condicion ::= condicion_logica:cl {:
               :};
 
 condicion_logica ::= PAR_A condicion_condicionNot:ccn PAR_C AND PAR_A condicion_condicionNot:ccnn PAR_C {:
-                         RESULT = new NodoAnd(ccn, ccnn);
+                         CondRes r = new CondRes();
+                         r.previas = unir(ccn.previas, ccnn.previas);
+                         r.cond = new NodoAnd(ccn.cond, ccnn.cond);
+                         RESULT = r;
                          System.out.println("[Regla 32] Condicion: AND");
                      :}
                    | PAR_A condicion_condicionNot:ccn PAR_C OR PAR_A condicion_condicionNot:ccnn PAR_C {:
-                         RESULT = new NodoOr(ccn, ccnn);
+                         CondRes r = new CondRes();
+                         r.previas = unir(ccn.previas, ccnn.previas);
+                         r.cond = new NodoOr(ccn.cond, ccnn.cond);
+                         RESULT = r;
                          System.out.println("[Regla 33] Condicion: OR");
                      :};
 
 condicion_operacion ::= expresion:e MAYOR_A expresion:ex {:
-                            RESULT = new NodoMayor(e, ex);
+                            CondRes r = new CondRes();
+                            r.previas = unir(e.previas, ex.previas);
+                            r.cond = new NodoMayor(e.expr, ex.expr);
+                            RESULT = r;
                             System.out.println("[Regla 34] Condicion: >");
                         :}
                       | expresion:e MAYOR_I expresion:ex {:
-                            RESULT = new NodoMayorIgual(e, ex);
+                            CondRes r = new CondRes();
+                            r.previas = unir(e.previas, ex.previas);
+                            r.cond = new NodoMayorIgual(e.expr, ex.expr);
+                            RESULT = r;
                             System.out.println("[Regla 35] Condicion: >=");
                         :}
                       | expresion:e MENOR_A expresion:ex {:
-                            RESULT = new NodoMenor(e, ex);
+                            CondRes r = new CondRes();
+                            r.previas = unir(e.previas, ex.previas);
+                            r.cond = new NodoMenor(e.expr, ex.expr);
+                            RESULT = r;
                             System.out.println("[Regla 36] Condicion: <");
                         :}
                       | expresion:e MENOR_I expresion:ex {:
-                            RESULT = new NodoMenorIgual(e, ex);
+                            CondRes r = new CondRes();
+                            r.previas = unir(e.previas, ex.previas);
+                            r.cond = new NodoMenorIgual(e.expr, ex.expr);
+                            RESULT = r;
                             System.out.println("[Regla 37] Condicion: <=");
                         :}
                       | expresion:e DISTINTO expresion:ex {:
-                            RESULT = new NodoDistinto(e, ex);
+                            CondRes r = new CondRes();
+                            r.previas = unir(e.previas, ex.previas);
+                            r.cond = new NodoDistinto(e.expr, ex.expr);
+                            RESULT = r;
                             System.out.println("[Regla 38] Condicion: <>");
                         :}
                       | expresion:e IGUAL_A expresion:ex {:
-                            RESULT = new NodoIgual(e, ex);
+                            CondRes r = new CondRes();
+                            r.previas = unir(e.previas, ex.previas);
+                            r.cond = new NodoIgual(e.expr, ex.expr);
+                            RESULT = r;
                             System.out.println("[Regla 39] Condicion: ==");
                         :};
 
@@ -249,6 +349,9 @@ condicion_condicionNot ::= condicion_operacion:co {:
                                System.out.println("[Regla 40] Condicion sin NOT");
                            :}
                          | NOT condicion_operacion:co {:
-                               RESULT = new NodoNot(co);
+                               CondRes r = new CondRes();
+                               r.previas = co.previas;
+                               r.cond = new NodoNot(co.cond);
+                               RESULT = r;
                                System.out.println("[Regla 41] Condicion con NOT");
                            :};

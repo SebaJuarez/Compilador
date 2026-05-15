@@ -1,0 +1,6 @@
+program
+    _x = 10
+    if (_x > cant[1,2,3,4] * 4 + 2) {
+        put(_x)
+    }
+end

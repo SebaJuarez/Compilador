@@ -42,11 +42,11 @@ public class parser extends java_cup.runtime.lr_parser {
     "\003\000\002\012\005\000\002\012\005\000\002\012\005" +
     "\000\002\012\003\000\002\013\003\000\002\013\003\000" +
     "\002\013\003\000\002\013\003\000\002\013\003\000\002" +
-    "\013\005\000\002\020\006\000\002\020\005\000\002\021" +
-    "\005\000\002\021\003\000\002\014\003\000\002\014\003" +
-    "\000\002\015\011\000\002\015\011\000\002\016\005\000" +
-    "\002\016\005\000\002\016\005\000\002\016\005\000\002" +
-    "\016\005\000\002\016\005\000\002\017\003\000\002\017" +
+    "\013\005\000\002\014\006\000\002\014\005\000\002\021" +
+    "\005\000\002\021\003\000\002\015\003\000\002\015\003" +
+    "\000\002\016\011\000\002\016\011\000\002\017\005\000" +
+    "\002\017\005\000\002\017\005\000\002\017\005\000\002" +
+    "\017\005\000\002\017\005\000\002\020\003\000\002\020" +
     "\004" });
 
   /** Access to production table. */
@@ -59,117 +59,120 @@ public class parser extends java_cup.runtime.lr_parser {
     "\002\000\012\006\007\007\014\011\010\050\013\001\002" +
     "\000\016\005\ufffb\006\ufffb\007\ufffb\011\ufffb\034\ufffb\050" +
     "\ufffb\001\002\000\004\031\133\001\002\000\004\031\130" +
-    "\001\002\000\016\005\ufffe\006\007\007\014\011\010\034" +
-    "\ufffe\050\013\001\002\000\016\005\ufffc\006\ufffc\007\ufffc" +
-    "\011\ufffc\034\ufffc\050\ufffc\001\002\000\004\040\125\001" +
-    "\002\000\004\031\021\001\002\000\016\005\ufffa\006\ufffa" +
-    "\007\ufffa\011\ufffa\034\ufffa\050\ufffa\001\002\000\004\005" +
-    "\020\001\002\000\016\005\ufffd\006\ufffd\007\ufffd\011\ufffd" +
-    "\034\ufffd\050\ufffd\001\002\000\004\002\000\001\002\000" +
-    "\016\012\035\031\022\050\026\051\023\052\032\053\025" +
-    "\001\002\000\020\012\035\015\111\031\066\050\026\051" +
-    "\023\052\032\053\025\001\002\000\046\005\uffea\006\uffea" +
-    "\007\uffea\011\uffea\016\uffea\017\uffea\020\uffea\021\uffea\022" +
-    "\uffea\023\uffea\024\uffea\025\uffea\026\uffea\027\uffea\030\uffea" +
-    "\032\uffea\034\uffea\050\uffea\001\002\000\046\005\ufff2\006" +
-    "\ufff2\007\ufff2\011\ufff2\016\ufff2\017\ufff2\020\ufff2\021\ufff2" +
-    "\022\ufff2\023\ufff2\024\ufff2\025\ufff2\026\100\027\101\030" +
-    "\077\032\ufff2\034\ufff2\050\ufff2\001\002\000\046\005\uffeb" +
-    "\006\uffeb\007\uffeb\011\uffeb\016\uffeb\017\uffeb\020\uffeb\021" +
-    "\uffeb\022\uffeb\023\uffeb\024\uffeb\025\uffeb\026\uffeb\027\uffeb" +
-    "\030\uffeb\032\uffeb\034\uffeb\050\uffeb\001\002\000\046\005" +
-    "\uffed\006\uffed\007\uffed\011\uffed\016\uffed\017\uffed\020\uffed" +
-    "\021\uffed\022\uffed\023\uffed\024\uffed\025\uffed\026\uffed\027" +
-    "\uffed\030\uffed\032\uffed\034\uffed\050\uffed\001\002\000\022" +
-    "\016\062\017\064\020\056\021\061\022\063\023\065\024" +
-    "\060\025\057\001\002\000\046\005\uffee\006\uffee\007\uffee" +
-    "\011\uffee\016\uffee\017\uffee\020\uffee\021\uffee\022\uffee\023" +
-    "\uffee\024\uffee\025\uffee\026\uffee\027\uffee\030\uffee\032\uffee" +
-    "\034\uffee\050\uffee\001\002\000\004\032\046\001\002\000" +
-    "\046\005\uffec\006\uffec\007\uffec\011\uffec\016\uffec\017\uffec" +
-    "\020\uffec\021\uffec\022\uffec\023\uffec\024\uffec\025\uffec\026" +
-    "\uffec\027\uffec\030\uffec\032\uffec\034\uffec\050\uffec\001\002" +
-    "\000\004\032\uffe2\001\002\000\004\032\uffe3\001\002\000" +
-    "\004\035\037\001\002\000\046\005\uffe9\006\uffe9\007\uffe9" +
-    "\011\uffe9\016\uffe9\017\uffe9\020\uffe9\021\uffe9\022\uffe9\023" +
-    "\uffe9\024\uffe9\025\uffe9\026\uffe9\027\uffe9\030\uffe9\032\uffe9" +
-    "\034\uffe9\050\uffe9\001\002\000\006\036\040\052\042\001" +
-    "\002\000\046\005\uffe6\006\uffe6\007\uffe6\011\uffe6\016\uffe6" +
-    "\017\uffe6\020\uffe6\021\uffe6\022\uffe6\023\uffe6\024\uffe6\025" +
-    "\uffe6\026\uffe6\027\uffe6\030\uffe6\032\uffe6\034\uffe6\050\uffe6" +
-    "\001\002\000\006\036\044\037\043\001\002\000\006\036" +
-    "\uffe4\037\uffe4\001\002\000\004\052\045\001\002\000\046" +
-    "\005\uffe7\006\uffe7\007\uffe7\011\uffe7\016\uffe7\017\uffe7\020" +
-    "\uffe7\021\uffe7\022\uffe7\023\uffe7\024\uffe7\025\uffe7\026\uffe7" +
-    "\027\uffe7\030\uffe7\032\uffe7\034\uffe7\050\uffe7\001\002\000" +
-    "\006\036\uffe5\037\uffe5\001\002\000\004\033\047\001\002" +
-    "\000\012\006\007\007\014\011\010\050\013\001\002\000" +
-    "\004\034\051\001\002\000\020\005\ufff7\006\ufff7\007\ufff7" +
-    "\010\052\011\ufff7\034\ufff7\050\ufff7\001\002\000\004\033" +
-    "\053\001\002\000\012\006\007\007\014\011\010\050\013" +
-    "\001\002\000\004\034\055\001\002\000\016\005\ufff6\006" +
-    "\ufff6\007\ufff6\011\ufff6\034\ufff6\050\ufff6\001\002\000\016" +
-    "\012\035\031\066\050\026\051\023\052\032\053\025\001" +
-    "\002\000\016\012\035\031\066\050\026\051\023\052\032" +
-    "\053\025\001\002\000\016\012\035\031\066\050\026\051" +
-    "\023\052\032\053\025\001\002\000\016\012\035\031\066" +
-    "\050\026\051\023\052\032\053\025\001\002\000\016\012" +
-    "\035\031\066\050\026\051\023\052\032\053\025\001\002" +
-    "\000\016\012\035\031\066\050\026\051\023\052\032\053" +
-    "\025\001\002\000\016\012\035\031\066\050\026\051\023" +
-    "\052\032\053\025\001\002\000\016\012\035\031\066\050" +
-    "\026\051\023\052\032\053\025\001\002\000\016\012\035" +
-    "\031\066\050\026\051\023\052\032\053\025\001\002\000" +
-    "\010\024\060\025\057\032\uffda\001\002\000\010\024\060" +
-    "\025\057\032\071\001\002\000\046\005\uffe8\006\uffe8\007" +
-    "\uffe8\011\uffe8\016\uffe8\017\uffe8\020\uffe8\021\uffe8\022\uffe8" +
-    "\023\uffe8\024\uffe8\025\uffe8\026\uffe8\027\uffe8\030\uffe8\032" +
-    "\uffe8\034\uffe8\050\uffe8\001\002\000\010\024\060\025\057" +
-    "\032\uffde\001\002\000\010\024\060\025\057\032\uffdb\001" +
-    "\002\000\010\024\060\025\057\032\uffdf\001\002\000\010" +
-    "\024\060\025\057\032\uffdc\001\002\000\046\005\ufff4\006" +
-    "\ufff4\007\ufff4\011\ufff4\016\ufff4\017\ufff4\020\ufff4\021\ufff4" +
-    "\022\ufff4\023\ufff4\024\ufff4\025\ufff4\026\100\027\101\030" +
-    "\077\032\ufff4\034\ufff4\050\ufff4\001\002\000\016\012\035" +
-    "\031\066\050\026\051\023\052\032\053\025\001\002\000" +
-    "\016\012\035\031\066\050\026\051\023\052\032\053\025" +
-    "\001\002\000\016\012\035\031\066\050\026\051\023\052" +
-    "\032\053\025\001\002\000\046\005\ufff0\006\ufff0\007\ufff0" +
-    "\011\ufff0\016\ufff0\017\ufff0\020\ufff0\021\ufff0\022\ufff0\023" +
-    "\ufff0\024\ufff0\025\ufff0\026\ufff0\027\ufff0\030\ufff0\032\ufff0" +
-    "\034\ufff0\050\ufff0\001\002\000\046\005\ufff1\006\ufff1\007" +
-    "\ufff1\011\ufff1\016\ufff1\017\ufff1\020\ufff1\021\ufff1\022\ufff1" +
-    "\023\ufff1\024\ufff1\025\ufff1\026\ufff1\027\ufff1\030\ufff1\032" +
-    "\ufff1\034\ufff1\050\ufff1\001\002\000\046\005\uffef\006\uffef" +
-    "\007\uffef\011\uffef\016\uffef\017\uffef\020\uffef\021\uffef\022" +
-    "\uffef\023\uffef\024\uffef\025\uffef\026\uffef\027\uffef\030\uffef" +
-    "\032\uffef\034\uffef\050\uffef\001\002\000\046\005\ufff3\006" +
-    "\ufff3\007\ufff3\011\ufff3\016\ufff3\017\ufff3\020\ufff3\021\ufff3" +
-    "\022\ufff3\023\ufff3\024\ufff3\025\ufff3\026\100\027\101\030" +
-    "\077\032\ufff3\034\ufff3\050\ufff3\001\002\000\010\024\060" +
-    "\025\057\032\uffdd\001\002\000\024\016\062\017\064\020" +
-    "\056\021\061\022\063\023\065\024\060\025\057\032\071" +
-    "\001\002\000\004\032\114\001\002\000\016\012\035\031" +
-    "\066\050\026\051\023\052\032\053\025\001\002\000\004" +
-    "\032\uffd9\001\002\000\004\032\uffd8\001\002\000\006\013" +
-    "\115\014\116\001\002\000\004\031\122\001\002\000\004" +
-    "\031\117\001\002\000\020\012\035\015\111\031\066\050" +
-    "\026\051\023\052\032\053\025\001\002\000\004\032\121" +
-    "\001\002\000\004\032\uffe0\001\002\000\020\012\035\015" +
-    "\111\031\066\050\026\051\023\052\032\053\025\001\002" +
-    "\000\004\032\124\001\002\000\004\032\uffe1\001\002\000" +
-    "\016\012\035\031\066\050\026\051\023\052\032\053\025" +
-    "\001\002\000\022\005\ufff9\006\ufff9\007\ufff9\011\ufff9\024" +
-    "\060\025\057\034\ufff9\050\ufff9\001\002\000\006\005\uffff" +
-    "\034\uffff\001\002\000\016\012\035\031\066\050\026\051" +
-    "\023\052\032\053\025\001\002\000\010\024\060\025\057" +
-    "\032\132\001\002\000\016\005\ufff5\006\ufff5\007\ufff5\011" +
-    "\ufff5\034\ufff5\050\ufff5\001\002\000\016\012\035\031\022" +
-    "\050\026\051\023\052\032\053\025\001\002\000\004\032" +
-    "\135\001\002\000\004\033\136\001\002\000\012\006\007" +
-    "\007\014\011\010\050\013\001\002\000\004\034\140\001" +
-    "\002\000\016\005\ufff8\006\ufff8\007\ufff8\011\ufff8\034\ufff8" +
-    "\050\ufff8\001\002\000\004\002\001\001\002" });
+    "\001\002\000\016\005\ufffe\006\ufffe\007\ufffe\011\ufffe\034" +
+    "\ufffe\050\ufffe\001\002\000\016\005\ufffc\006\ufffc\007\ufffc" +
+    "\011\ufffc\034\ufffc\050\ufffc\001\002\000\004\040\126\001" +
+    "\002\000\004\031\022\001\002\000\016\005\ufffa\006\ufffa" +
+    "\007\ufffa\011\ufffa\034\ufffa\050\ufffa\001\002\000\014\005" +
+    "\021\006\007\007\014\011\010\050\013\001\002\000\016" +
+    "\005\ufffd\006\ufffd\007\ufffd\011\ufffd\034\ufffd\050\ufffd\001" +
+    "\002\000\016\005\uffff\006\uffff\007\uffff\011\uffff\034\uffff" +
+    "\050\uffff\001\002\000\004\002\000\001\002\000\016\012" +
+    "\036\031\023\050\027\051\024\052\033\053\026\001\002" +
+    "\000\020\012\036\015\112\031\067\050\027\051\024\052" +
+    "\033\053\026\001\002\000\046\005\uffea\006\uffea\007\uffea" +
+    "\011\uffea\016\uffea\017\uffea\020\uffea\021\uffea\022\uffea\023" +
+    "\uffea\024\uffea\025\uffea\026\uffea\027\uffea\030\uffea\032\uffea" +
+    "\034\uffea\050\uffea\001\002\000\046\005\ufff2\006\ufff2\007" +
+    "\ufff2\011\ufff2\016\ufff2\017\ufff2\020\ufff2\021\ufff2\022\ufff2" +
+    "\023\ufff2\024\ufff2\025\ufff2\026\101\027\102\030\100\032" +
+    "\ufff2\034\ufff2\050\ufff2\001\002\000\046\005\uffeb\006\uffeb" +
+    "\007\uffeb\011\uffeb\016\uffeb\017\uffeb\020\uffeb\021\uffeb\022" +
+    "\uffeb\023\uffeb\024\uffeb\025\uffeb\026\uffeb\027\uffeb\030\uffeb" +
+    "\032\uffeb\034\uffeb\050\uffeb\001\002\000\046\005\uffed\006" +
+    "\uffed\007\uffed\011\uffed\016\uffed\017\uffed\020\uffed\021\uffed" +
+    "\022\uffed\023\uffed\024\uffed\025\uffed\026\uffed\027\uffed\030" +
+    "\uffed\032\uffed\034\uffed\050\uffed\001\002\000\022\016\063" +
+    "\017\065\020\057\021\062\022\064\023\066\024\061\025" +
+    "\060\001\002\000\046\005\uffee\006\uffee\007\uffee\011\uffee" +
+    "\016\uffee\017\uffee\020\uffee\021\uffee\022\uffee\023\uffee\024" +
+    "\uffee\025\uffee\026\uffee\027\uffee\030\uffee\032\uffee\034\uffee" +
+    "\050\uffee\001\002\000\004\032\047\001\002\000\046\005" +
+    "\uffec\006\uffec\007\uffec\011\uffec\016\uffec\017\uffec\020\uffec" +
+    "\021\uffec\022\uffec\023\uffec\024\uffec\025\uffec\026\uffec\027" +
+    "\uffec\030\uffec\032\uffec\034\uffec\050\uffec\001\002\000\004" +
+    "\032\uffe2\001\002\000\004\032\uffe3\001\002\000\004\035" +
+    "\040\001\002\000\046\005\uffe9\006\uffe9\007\uffe9\011\uffe9" +
+    "\016\uffe9\017\uffe9\020\uffe9\021\uffe9\022\uffe9\023\uffe9\024" +
+    "\uffe9\025\uffe9\026\uffe9\027\uffe9\030\uffe9\032\uffe9\034\uffe9" +
+    "\050\uffe9\001\002\000\006\036\041\052\043\001\002\000" +
+    "\046\005\uffe6\006\uffe6\007\uffe6\011\uffe6\016\uffe6\017\uffe6" +
+    "\020\uffe6\021\uffe6\022\uffe6\023\uffe6\024\uffe6\025\uffe6\026" +
+    "\uffe6\027\uffe6\030\uffe6\032\uffe6\034\uffe6\050\uffe6\001\002" +
+    "\000\006\036\045\037\044\001\002\000\006\036\uffe4\037" +
+    "\uffe4\001\002\000\004\052\046\001\002\000\046\005\uffe7" +
+    "\006\uffe7\007\uffe7\011\uffe7\016\uffe7\017\uffe7\020\uffe7\021" +
+    "\uffe7\022\uffe7\023\uffe7\024\uffe7\025\uffe7\026\uffe7\027\uffe7" +
+    "\030\uffe7\032\uffe7\034\uffe7\050\uffe7\001\002\000\006\036" +
+    "\uffe5\037\uffe5\001\002\000\004\033\050\001\002\000\012" +
+    "\006\007\007\014\011\010\050\013\001\002\000\014\006" +
+    "\007\007\014\011\010\034\052\050\013\001\002\000\020" +
+    "\005\ufff7\006\ufff7\007\ufff7\010\053\011\ufff7\034\ufff7\050" +
+    "\ufff7\001\002\000\004\033\054\001\002\000\012\006\007" +
+    "\007\014\011\010\050\013\001\002\000\014\006\007\007" +
+    "\014\011\010\034\056\050\013\001\002\000\016\005\ufff6" +
+    "\006\ufff6\007\ufff6\011\ufff6\034\ufff6\050\ufff6\001\002\000" +
+    "\016\012\036\031\067\050\027\051\024\052\033\053\026" +
+    "\001\002\000\016\012\036\031\067\050\027\051\024\052" +
+    "\033\053\026\001\002\000\016\012\036\031\067\050\027" +
+    "\051\024\052\033\053\026\001\002\000\016\012\036\031" +
+    "\067\050\027\051\024\052\033\053\026\001\002\000\016" +
+    "\012\036\031\067\050\027\051\024\052\033\053\026\001" +
+    "\002\000\016\012\036\031\067\050\027\051\024\052\033" +
+    "\053\026\001\002\000\016\012\036\031\067\050\027\051" +
+    "\024\052\033\053\026\001\002\000\016\012\036\031\067" +
+    "\050\027\051\024\052\033\053\026\001\002\000\016\012" +
+    "\036\031\067\050\027\051\024\052\033\053\026\001\002" +
+    "\000\010\024\061\025\060\032\uffda\001\002\000\010\024" +
+    "\061\025\060\032\072\001\002\000\046\005\uffe8\006\uffe8" +
+    "\007\uffe8\011\uffe8\016\uffe8\017\uffe8\020\uffe8\021\uffe8\022" +
+    "\uffe8\023\uffe8\024\uffe8\025\uffe8\026\uffe8\027\uffe8\030\uffe8" +
+    "\032\uffe8\034\uffe8\050\uffe8\001\002\000\010\024\061\025" +
+    "\060\032\uffde\001\002\000\010\024\061\025\060\032\uffdb" +
+    "\001\002\000\010\024\061\025\060\032\uffdf\001\002\000" +
+    "\010\024\061\025\060\032\uffdc\001\002\000\046\005\ufff4" +
+    "\006\ufff4\007\ufff4\011\ufff4\016\ufff4\017\ufff4\020\ufff4\021" +
+    "\ufff4\022\ufff4\023\ufff4\024\ufff4\025\ufff4\026\101\027\102" +
+    "\030\100\032\ufff4\034\ufff4\050\ufff4\001\002\000\016\012" +
+    "\036\031\067\050\027\051\024\052\033\053\026\001\002" +
+    "\000\016\012\036\031\067\050\027\051\024\052\033\053" +
+    "\026\001\002\000\016\012\036\031\067\050\027\051\024" +
+    "\052\033\053\026\001\002\000\046\005\ufff0\006\ufff0\007" +
+    "\ufff0\011\ufff0\016\ufff0\017\ufff0\020\ufff0\021\ufff0\022\ufff0" +
+    "\023\ufff0\024\ufff0\025\ufff0\026\ufff0\027\ufff0\030\ufff0\032" +
+    "\ufff0\034\ufff0\050\ufff0\001\002\000\046\005\ufff1\006\ufff1" +
+    "\007\ufff1\011\ufff1\016\ufff1\017\ufff1\020\ufff1\021\ufff1\022" +
+    "\ufff1\023\ufff1\024\ufff1\025\ufff1\026\ufff1\027\ufff1\030\ufff1" +
+    "\032\ufff1\034\ufff1\050\ufff1\001\002\000\046\005\uffef\006" +
+    "\uffef\007\uffef\011\uffef\016\uffef\017\uffef\020\uffef\021\uffef" +
+    "\022\uffef\023\uffef\024\uffef\025\uffef\026\uffef\027\uffef\030" +
+    "\uffef\032\uffef\034\uffef\050\uffef\001\002\000\046\005\ufff3" +
+    "\006\ufff3\007\ufff3\011\ufff3\016\ufff3\017\ufff3\020\ufff3\021" +
+    "\ufff3\022\ufff3\023\ufff3\024\ufff3\025\ufff3\026\101\027\102" +
+    "\030\100\032\ufff3\034\ufff3\050\ufff3\001\002\000\010\024" +
+    "\061\025\060\032\uffdd\001\002\000\024\016\063\017\065" +
+    "\020\057\021\062\022\064\023\066\024\061\025\060\032" +
+    "\072\001\002\000\004\032\115\001\002\000\016\012\036" +
+    "\031\067\050\027\051\024\052\033\053\026\001\002\000" +
+    "\004\032\uffd9\001\002\000\004\032\uffd8\001\002\000\006" +
+    "\013\116\014\117\001\002\000\004\031\123\001\002\000" +
+    "\004\031\120\001\002\000\020\012\036\015\112\031\067" +
+    "\050\027\051\024\052\033\053\026\001\002\000\004\032" +
+    "\122\001\002\000\004\032\uffe0\001\002\000\020\012\036" +
+    "\015\112\031\067\050\027\051\024\052\033\053\026\001" +
+    "\002\000\004\032\125\001\002\000\004\032\uffe1\001\002" +
+    "\000\016\012\036\031\067\050\027\051\024\052\033\053" +
+    "\026\001\002\000\022\005\ufff9\006\ufff9\007\ufff9\011\ufff9" +
+    "\024\061\025\060\034\ufff9\050\ufff9\001\002\000\016\012" +
+    "\036\031\067\050\027\051\024\052\033\053\026\001\002" +
+    "\000\010\024\061\025\060\032\132\001\002\000\016\005" +
+    "\ufff5\006\ufff5\007\ufff5\011\ufff5\034\ufff5\050\ufff5\001\002" +
+    "\000\016\012\036\031\023\050\027\051\024\052\033\053" +
+    "\026\001\002\000\004\032\135\001\002\000\004\033\136" +
+    "\001\002\000\012\006\007\007\014\011\010\050\013\001" +
+    "\002\000\014\006\007\007\014\011\010\034\140\050\013" +
+    "\001\002\000\016\005\ufff8\006\ufff8\007\ufff8\011\ufff8\034" +
+    "\ufff8\050\ufff8\001\002\000\004\002\001\001\002" });
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
@@ -180,51 +183,53 @@ public class parser extends java_cup.runtime.lr_parser {
     "\000\137\000\004\002\003\001\001\000\002\001\001\000" +
     "\016\003\015\004\010\005\016\006\011\007\005\010\014" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
-    "\001\000\016\003\126\004\010\005\016\006\011\007\005" +
-    "\010\014\001\001\000\002\001\001\000\002\001\001\000" +
-    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
-    "\001\001\000\002\001\001\000\020\011\026\012\023\013" +
-    "\027\014\030\015\033\016\032\020\035\001\001\000\016" +
-    "\011\106\012\023\013\027\016\111\017\107\020\035\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\014\004\017\005" +
+    "\016\006\011\007\005\010\014\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\020\011\027\012" +
+    "\024\013\030\014\036\015\031\016\034\017\033\001\001" +
+    "\000\016\011\107\012\024\013\030\014\036\017\112\020" +
+    "\110\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
     "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
-    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
-    "\001\001\000\002\001\001\000\002\001\001\000\004\021" +
-    "\040\001\001\000\002\001\001\000\002\001\001\000\002" +
-    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
-    "\001\000\002\001\001\000\016\003\047\004\010\005\016" +
-    "\006\011\007\005\010\014\001\001\000\002\001\001\000" +
-    "\002\001\001\000\002\001\001\000\016\003\053\004\010" +
+    "\004\021\041\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\016\003\050\004\010" +
+    "\005\016\006\011\007\005\010\014\001\001\000\014\004" +
+    "\017\005\016\006\011\007\005\010\014\001\001\000\002" +
+    "\001\001\000\002\001\001\000\016\003\054\004\010\005" +
+    "\016\006\011\007\005\010\014\001\001\000\014\004\017" +
     "\005\016\006\011\007\005\010\014\001\001\000\002\001" +
-    "\001\000\002\001\001\000\012\011\105\012\023\013\027" +
-    "\020\035\001\001\000\010\012\104\013\027\020\035\001" +
-    "\001\000\010\012\075\013\027\020\035\001\001\000\012" +
-    "\011\074\012\023\013\027\020\035\001\001\000\012\011" +
-    "\073\012\023\013\027\020\035\001\001\000\012\011\072" +
-    "\012\023\013\027\020\035\001\001\000\012\011\071\012" +
-    "\023\013\027\020\035\001\001\000\012\011\066\012\023" +
-    "\013\027\020\035\001\001\000\012\011\067\012\023\013" +
-    "\027\020\035\001\001\000\002\001\001\000\002\001\001" +
+    "\001\000\012\011\106\012\024\013\030\014\036\001\001" +
+    "\000\010\012\105\013\030\014\036\001\001\000\010\012" +
+    "\076\013\030\014\036\001\001\000\012\011\075\012\024" +
+    "\013\030\014\036\001\001\000\012\011\074\012\024\013" +
+    "\030\014\036\001\001\000\012\011\073\012\024\013\030" +
+    "\014\036\001\001\000\012\011\072\012\024\013\030\014" +
+    "\036\001\001\000\012\011\067\012\024\013\030\014\036" +
+    "\001\001\000\012\011\070\012\024\013\030\014\036\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
     "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
-    "\002\001\001\000\002\001\001\000\002\001\001\000\006" +
-    "\013\103\020\035\001\001\000\006\013\102\020\035\001" +
-    "\001\000\006\013\101\020\035\001\001\000\002\001\001" +
+    "\002\001\001\000\002\001\001\000\006\013\104\014\036" +
+    "\001\001\000\006\013\103\014\036\001\001\000\006\013" +
+    "\102\014\036\001\001\000\002\001\001\000\002\001\001" +
     "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
-    "\002\001\001\000\002\001\001\000\002\001\001\000\014" +
-    "\011\026\012\023\013\027\016\112\020\035\001\001\000" +
+    "\002\001\001\000\002\001\001\000\014\011\027\012\024" +
+    "\013\030\014\036\017\113\001\001\000\002\001\001\000" +
     "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
-    "\001\001\000\002\001\001\000\016\011\026\012\023\013" +
-    "\027\016\111\017\117\020\035\001\001\000\002\001\001" +
-    "\000\002\001\001\000\016\011\026\012\023\013\027\016" +
-    "\111\017\122\020\035\001\001\000\002\001\001\000\002" +
-    "\001\001\000\012\011\125\012\023\013\027\020\035\001" +
-    "\001\000\002\001\001\000\002\001\001\000\012\011\130" +
-    "\012\023\013\027\020\035\001\001\000\002\001\001\000" +
-    "\002\001\001\000\020\011\026\012\023\013\027\014\133" +
-    "\015\033\016\032\020\035\001\001\000\002\001\001\000" +
-    "\002\001\001\000\016\003\136\004\010\005\016\006\011" +
-    "\007\005\010\014\001\001\000\002\001\001\000\002\001" +
-    "\001\000\002\001\001" });
+    "\001\001\000\016\011\027\012\024\013\030\014\036\017" +
+    "\112\020\120\001\001\000\002\001\001\000\002\001\001" +
+    "\000\016\011\027\012\024\013\030\014\036\017\112\020" +
+    "\123\001\001\000\002\001\001\000\002\001\001\000\012" +
+    "\011\126\012\024\013\030\014\036\001\001\000\002\001" +
+    "\001\000\012\011\130\012\024\013\030\014\036\001\001" +
+    "\000\002\001\001\000\002\001\001\000\020\011\027\012" +
+    "\024\013\030\014\036\015\133\016\034\017\033\001\001" +
+    "\000\002\001\001\000\002\001\001\000\016\003\136\004" +
+    "\010\005\016\006\011\007\005\010\014\001\001\000\014" +
+    "\004\017\005\016\006\011\007\005\010\014\001\001\000" +
+    "\002\001\001\000\002\001\001" });
 
   /** Access to <code>reduce_goto</code> table. */
   public short[][] reduce_table() {return _reduce_table;}
@@ -275,9 +280,82 @@ class CUP$parser$actions {
 
 
     public List<NodoSentencia> a;
-    public List<NodoSentencia> i;
-    public List<NodoSentencia> sentencias_cant;
-    public int contadorMultiplosDos = 0;
+
+    public int contadorCant = 0;
+    public String currentCantVar = "";
+
+    private static class ExprRes {
+        List<NodoSentencia> previas = new ArrayList<NodoSentencia>();
+        NodoExpresion expr;
+    }
+
+    private static class CondRes {
+        List<NodoSentencia> previas = new ArrayList<NodoSentencia>();
+        NodoExpresionBooleana cond;
+    }
+
+    private ExprRes simpleExpr(NodoExpresion e) {
+        ExprRes r = new ExprRes();
+        r.expr = e;
+        return r;
+    }
+
+    private CondRes simpleCond(NodoExpresionBooleana c) {
+        CondRes r = new CondRes();
+        r.cond = c;
+        return r;
+    }
+
+    private ExprRes construirCant(List<Integer> numeros) {
+        ExprRes r = new ExprRes();
+
+        String temporal = "__cant" + contadorCant++;
+        currentCantVar = temporal;
+
+        List<NodoSentencia> sentencias = new ArrayList<NodoSentencia>();
+
+        sentencias.add(
+            new NodoAsignacion(
+                new NodoIdentificador(temporal),
+                new NodoNumEnt(0)
+            )
+        );
+
+        for (Integer n : numeros) {
+            NodoExpresion resto = new NodoMod(
+                new NodoNumEnt(n),
+                new NodoNumEnt(2)
+            );
+
+            NodoExpresionBooleana cond = new NodoIgual(
+                resto,
+                new NodoNumEnt(0)
+            );
+
+            List<NodoSentencia> body = new ArrayList<NodoSentencia>();
+            body.add(
+                new NodoAsignacion(
+                    new NodoIdentificador(temporal),
+                    new NodoSuma(
+                        new NodoIdentificador(temporal),
+                        new NodoNumEnt(1)
+                    )
+                )
+            );
+
+            sentencias.add(new NodoIf(cond, body, null));
+        }
+
+        r.previas = sentencias;
+        r.expr = new NodoIdentificador(temporal);
+        return r;
+    }
+
+    private List<NodoSentencia> unir(List<NodoSentencia> a, List<NodoSentencia> b) {
+        List<NodoSentencia> res = new ArrayList<NodoSentencia>(a);
+        res.addAll(b);
+        return res;
+    }
 
   private final parser parser;
 
@@ -330,17 +408,17 @@ class CUP$parser$actions {
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 2: // listadesentencias ::= lineadesentencia listadesentencias 
+          case 2: // listadesentencias ::= listadesentencias lineadesentencia 
             {
               List<NodoSentencia> RESULT =null;
-		int lsleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).left;
-		int lsright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).right;
-		NodoSentencia ls = (NodoSentencia)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
-		int lssleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
-		int lssright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
-		List<NodoSentencia> lss = (List<NodoSentencia>)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		int lssleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).left;
+		int lssright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).right;
+		List<NodoSentencia> lss = (List<NodoSentencia>)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
+		int lsleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
+		int lsright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
+		List<NodoSentencia> ls = (List<NodoSentencia>)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		
-                          lss.add(0, ls);
+                          lss.addAll(ls);
                           RESULT = lss;
                           System.out.println("[Regla 2] Lista de sentencias (multiples)");
                       
@@ -354,11 +432,9 @@ class CUP$parser$actions {
               List<NodoSentencia> RESULT =null;
 		int lsleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int lsright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
-		NodoSentencia ls = (NodoSentencia)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		List<NodoSentencia> ls = (List<NodoSentencia>)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		
-                          a = new ArrayList<NodoSentencia>();
-                          a.add(ls);
-                          RESULT = a;
+                          RESULT = ls;
                           System.out.println("[Regla 3] Lista de sentencias (una)");
                       
               CUP$parser$result = parser.getSymbolFactory().newSymbol("listadesentencias",1, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
@@ -368,10 +444,10 @@ class CUP$parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 4: // lineadesentencia ::= asign 
             {
-              NodoSentencia RESULT =null;
+              List<NodoSentencia> RESULT =null;
 		int agnleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int agnright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
-		NodoAsignacion agn = (NodoAsignacion)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		List<NodoSentencia> agn = (List<NodoSentencia>)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		
                          RESULT = agn;
                          System.out.println("[Regla 4] Sentencia: Asignacion");
@@ -383,10 +459,10 @@ class CUP$parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 5: // lineadesentencia ::= while 
             {
-              NodoSentencia RESULT =null;
+              List<NodoSentencia> RESULT =null;
 		int whleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int whright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
-		NodoCiclo wh = (NodoCiclo)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		List<NodoSentencia> wh = (List<NodoSentencia>)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		
                          RESULT = wh;
                          System.out.println("[Regla 5] Sentencia: While");
@@ -398,10 +474,10 @@ class CUP$parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 6: // lineadesentencia ::= if 
             {
-              NodoSentencia RESULT =null;
+              List<NodoSentencia> RESULT =null;
 		int lsifleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int lsifright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
-		NodoIf lsif = (NodoIf)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		List<NodoSentencia> lsif = (List<NodoSentencia>)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		
                          RESULT = lsif;
                          System.out.println("[Regla 6] Sentencia: If");
@@ -413,10 +489,10 @@ class CUP$parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 7: // lineadesentencia ::= put 
             {
-              NodoSentencia RESULT =null;
+              List<NodoSentencia> RESULT =null;
 		int ptleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int ptright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
-		NodoPut pt = (NodoPut)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		List<NodoSentencia> pt = (List<NodoSentencia>)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		
                          RESULT = pt;
                          System.out.println("[Regla 7] Sentencia: Put");
@@ -428,15 +504,17 @@ class CUP$parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 8: // asign ::= VARIABLE ASIGN expresion 
             {
-              NodoAsignacion RESULT =null;
+              List<NodoSentencia> RESULT =null;
 		int vbleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).left;
 		int vbright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).right;
 		String vb = (String)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
 		int eleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int eright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
-		NodoExpresion e = (NodoExpresion)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		ExprRes e = (ExprRes)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		
-              RESULT = new NodoAsignacion(new NodoIdentificador(vb), e);
+              List<NodoSentencia> res = new ArrayList<NodoSentencia>(e.previas);
+              res.add(new NodoAsignacion(new NodoIdentificador(vb), e.expr));
+              RESULT = res;
               System.out.println("[Regla 8] Asignacion: " + vb + " = expr");
           
               CUP$parser$result = parser.getSymbolFactory().newSymbol("asign",3, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
@@ -446,15 +524,17 @@ class CUP$parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 9: // while ::= WHILE PAR_A condicion PAR_C LLAVE_A listadesentencias LLAVE_C 
             {
-              NodoCiclo RESULT =null;
+              List<NodoSentencia> RESULT =null;
 		int cleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-4)).left;
 		int cright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-4)).right;
-		NodoExpresionBooleana c = (NodoExpresionBooleana)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-4)).value;
+		CondRes c = (CondRes)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-4)).value;
 		int lssleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).left;
 		int lssright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).right;
 		List<NodoSentencia> lss = (List<NodoSentencia>)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
 		
-              RESULT = new NodoCiclo(c, lss);
+              List<NodoSentencia> res = new ArrayList<NodoSentencia>(c.previas);
+              res.add(new NodoCiclo(c.cond, lss));
+              RESULT = res;
               System.out.println("[Regla 9] While");
           
               CUP$parser$result = parser.getSymbolFactory().newSymbol("while",4, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-6)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
@@ -464,15 +544,17 @@ class CUP$parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 10: // if ::= IF PAR_A condicion PAR_C LLAVE_A listadesentencias LLAVE_C 
             {
-              NodoIf RESULT =null;
+              List<NodoSentencia> RESULT =null;
 		int cleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-4)).left;
 		int cright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-4)).right;
-		NodoExpresionBooleana c = (NodoExpresionBooleana)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-4)).value;
+		CondRes c = (CondRes)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-4)).value;
 		int lssleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).left;
 		int lssright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).right;
 		List<NodoSentencia> lss = (List<NodoSentencia>)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
 		
-           RESULT = new NodoIf(c, lss, null);
+           List<NodoSentencia> res = new ArrayList<NodoSentencia>(c.previas);
+           res.add(new NodoIf(c.cond, lss, null));
+           RESULT = res;
            System.out.println("[Regla 10] If sin Else");
        
               CUP$parser$result = parser.getSymbolFactory().newSymbol("if",5, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-6)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
@@ -482,10 +564,10 @@ class CUP$parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 11: // if ::= IF PAR_A condicion PAR_C LLAVE_A listadesentencias LLAVE_C ELSE LLAVE_A listadesentencias LLAVE_C 
             {
-              NodoIf RESULT =null;
+              List<NodoSentencia> RESULT =null;
 		int cleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-8)).left;
 		int cright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-8)).right;
-		NodoExpresionBooleana c = (NodoExpresionBooleana)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-8)).value;
+		CondRes c = (CondRes)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-8)).value;
 		int lssleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-5)).left;
 		int lssright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-5)).right;
 		List<NodoSentencia> lss = (List<NodoSentencia>)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-5)).value;
@@ -493,7 +575,9 @@ class CUP$parser$actions {
 		int lsseright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).right;
 		List<NodoSentencia> lsse = (List<NodoSentencia>)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
 		
-           RESULT = new NodoIf(c, lss, lsse);
+           List<NodoSentencia> res = new ArrayList<NodoSentencia>(c.previas);
+           res.add(new NodoIf(c.cond, lss, lsse));
+           RESULT = res;
            System.out.println("[Regla 11] If con Else");
        
               CUP$parser$result = parser.getSymbolFactory().newSymbol("if",5, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-10)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
@@ -503,12 +587,14 @@ class CUP$parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 12: // put ::= PUT PAR_A expresion PAR_C 
             {
-              NodoPut RESULT =null;
+              List<NodoSentencia> RESULT =null;
 		int eleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).left;
 		int eright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).right;
-		NodoExpresion e = (NodoExpresion)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
+		ExprRes e = (ExprRes)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
 		
-            RESULT = new NodoPut(e);
+            List<NodoSentencia> res = new ArrayList<NodoSentencia>(e.previas);
+            res.add(new NodoPut(e.expr));
+            RESULT = res;
             System.out.println("[Regla 12] Put");
         
               CUP$parser$result = parser.getSymbolFactory().newSymbol("put",6, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-3)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
@@ -518,15 +604,18 @@ class CUP$parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 13: // expresion ::= expresion OPSUMA termino 
             {
-              NodoExpresion RESULT =null;
+              ExprRes RESULT =null;
 		int eleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).left;
 		int eright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).right;
-		NodoExpresion e = (NodoExpresion)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
+		ExprRes e = (ExprRes)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
 		int tleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int tright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
-		NodoExpresion t = (NodoExpresion)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		ExprRes t = (ExprRes)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		
-                  RESULT = new NodoSuma(e, t);
+                  ExprRes r = new ExprRes();
+                  r.previas = unir(e.previas, t.previas);
+                  r.expr = new NodoSuma(e.expr, t.expr);
+                  RESULT = r;
                   System.out.println("[Regla 13] Expresion: Suma");
               
               CUP$parser$result = parser.getSymbolFactory().newSymbol("expresion",7, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
@@ -536,15 +625,18 @@ class CUP$parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 14: // expresion ::= expresion OPRESTA termino 
             {
-              NodoExpresion RESULT =null;
+              ExprRes RESULT =null;
 		int eleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).left;
 		int eright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).right;
-		NodoExpresion e = (NodoExpresion)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
+		ExprRes e = (ExprRes)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
 		int tleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int tright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
-		NodoExpresion t = (NodoExpresion)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		ExprRes t = (ExprRes)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		
-                  RESULT = new NodoResta(e, t);
+                  ExprRes r = new ExprRes();
+                  r.previas = unir(e.previas, t.previas);
+                  r.expr = new NodoResta(e.expr, t.expr);
+                  RESULT = r;
                   System.out.println("[Regla 14] Expresion: Resta");
               
               CUP$parser$result = parser.getSymbolFactory().newSymbol("expresion",7, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
@@ -554,10 +646,10 @@ class CUP$parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 15: // expresion ::= termino 
             {
-              NodoExpresion RESULT =null;
+              ExprRes RESULT =null;
 		int tleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int tright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
-		NodoExpresion t = (NodoExpresion)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		ExprRes t = (ExprRes)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		
                   RESULT = t;
                   System.out.println("[Regla 15] Expresion -> Termino");
@@ -569,15 +661,18 @@ class CUP$parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 16: // termino ::= termino OPMULTI factor 
             {
-              NodoExpresion RESULT =null;
+              ExprRes RESULT =null;
 		int tleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).left;
 		int tright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).right;
-		NodoExpresion t = (NodoExpresion)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
+		ExprRes t = (ExprRes)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
 		int fleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int fright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
-		NodoExpresion f = (NodoExpresion)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		ExprRes f = (ExprRes)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		
-                RESULT = new NodoMultiplicacion(t, f);
+                ExprRes r = new ExprRes();
+                r.previas = unir(t.previas, f.previas);
+                r.expr = new NodoMultiplicacion(t.expr, f.expr);
+                RESULT = r;
                 System.out.println("[Regla 16] Termino: Multiplicacion");
             
               CUP$parser$result = parser.getSymbolFactory().newSymbol("termino",8, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
@@ -587,15 +682,18 @@ class CUP$parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 17: // termino ::= termino OPDIV factor 
             {
-              NodoExpresion RESULT =null;
+              ExprRes RESULT =null;
 		int tleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).left;
 		int tright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).right;
-		NodoExpresion t = (NodoExpresion)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
+		ExprRes t = (ExprRes)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
 		int fleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int fright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
-		NodoExpresion f = (NodoExpresion)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		ExprRes f = (ExprRes)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		
-                RESULT = new NodoDivision(t, f);
+                ExprRes r = new ExprRes();
+                r.previas = unir(t.previas, f.previas);
+                r.expr = new NodoDivision(t.expr, f.expr);
+                RESULT = r;
                 System.out.println("[Regla 17] Termino: Division");
             
               CUP$parser$result = parser.getSymbolFactory().newSymbol("termino",8, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
@@ -605,15 +703,18 @@ class CUP$parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 18: // termino ::= termino OPMOD factor 
             {
-              NodoExpresion RESULT =null;
+              ExprRes RESULT =null;
 		int tleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).left;
 		int tright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).right;
-		NodoExpresion t = (NodoExpresion)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
+		ExprRes t = (ExprRes)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
 		int fleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int fright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
-		NodoExpresion f = (NodoExpresion)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		ExprRes f = (ExprRes)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		
-                RESULT = new NodoMod(t, f);
+                ExprRes r = new ExprRes();
+                r.previas = unir(t.previas, f.previas);
+                r.expr = new NodoMod(t.expr, f.expr);
+                RESULT = r;
                 System.out.println("[Regla 18] Termino: Modulo");
             
               CUP$parser$result = parser.getSymbolFactory().newSymbol("termino",8, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
@@ -623,10 +724,10 @@ class CUP$parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 19: // termino ::= factor 
             {
-              NodoExpresion RESULT =null;
+              ExprRes RESULT =null;
 		int fleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int fright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
-		NodoExpresion f = (NodoExpresion)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		ExprRes f = (ExprRes)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		
                 RESULT = f;
                 System.out.println("[Regla 19] Termino -> Factor");
@@ -638,12 +739,12 @@ class CUP$parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 20: // factor ::= VARIABLE 
             {
-              NodoExpresion RESULT =null;
+              ExprRes RESULT =null;
 		int vbleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int vbright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		String vb = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		
-               RESULT = new NodoIdentificador(vb);
+               RESULT = simpleExpr(new NodoIdentificador(vb));
                System.out.println("[Regla 20] Factor: Variable = " + vb);
            
               CUP$parser$result = parser.getSymbolFactory().newSymbol("factor",9, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
@@ -653,12 +754,12 @@ class CUP$parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 21: // factor ::= NUMENT 
             {
-              NodoExpresion RESULT =null;
+              ExprRes RESULT =null;
 		int neleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int neright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		String ne = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		
-               RESULT = new NodoNumEnt(Integer.parseInt(ne));
+               RESULT = simpleExpr(new NodoNumEnt(Integer.parseInt(ne)));
                System.out.println("[Regla 21] Factor: Entero = " + ne);
            
               CUP$parser$result = parser.getSymbolFactory().newSymbol("factor",9, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
@@ -668,12 +769,12 @@ class CUP$parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 22: // factor ::= NUMREAL 
             {
-              NodoExpresion RESULT =null;
+              ExprRes RESULT =null;
 		int nrleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int nrright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		String nr = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		
-               RESULT = new NodoNumReal(Float.parseFloat(nr));
+               RESULT = simpleExpr(new NodoNumReal(Float.parseFloat(nr)));
                System.out.println("[Regla 22] Factor: Real = " + nr);
            
               CUP$parser$result = parser.getSymbolFactory().newSymbol("factor",9, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
@@ -683,12 +784,12 @@ class CUP$parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 23: // factor ::= VALSTRING 
             {
-              NodoExpresion RESULT =null;
+              ExprRes RESULT =null;
 		int vsleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int vsright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		String vs = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		
-               RESULT = new NodoConstanteString(vs);
+               RESULT = simpleExpr(new NodoConstanteString(vs));
                System.out.println("[Regla 23] Factor: String = " + vs);
            
               CUP$parser$result = parser.getSymbolFactory().newSymbol("factor",9, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
@@ -698,10 +799,10 @@ class CUP$parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 24: // factor ::= cant 
             {
-              NodoExpresion RESULT =null;
+              ExprRes RESULT =null;
 		int ctleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int ctright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
-		NodoCant ct = (NodoCant)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		ExprRes ct = (ExprRes)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		
                RESULT = ct;
                System.out.println("[Regla 24] Factor: Cant");
@@ -713,12 +814,15 @@ class CUP$parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 25: // factor ::= PAR_A expresion PAR_C 
             {
-              NodoExpresion RESULT =null;
+              ExprRes RESULT =null;
 		int eleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).left;
 		int eright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).right;
-		NodoExpresion e = (NodoExpresion)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
+		ExprRes e = (ExprRes)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
 		
-               RESULT = e;
+               ExprRes r = new ExprRes();
+               r.previas = e.previas;
+               r.expr = e.expr;
+               RESULT = r;
                System.out.println("[Regla 25] Factor: (expresion)");
            
               CUP$parser$result = parser.getSymbolFactory().newSymbol("factor",9, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
@@ -728,55 +832,42 @@ class CUP$parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 26: // cant ::= CANT CORCH_A lista CORCH_C 
             {
-              NodoCant RESULT =null;
-		int lssleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).left;
-		int lssright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).right;
-		List<NodoSentencia> lss = (List<NodoSentencia>)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
+              ExprRes RESULT =null;
+		int lnleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).left;
+		int lnright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).right;
+		List<Integer> ln = (List<Integer>)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
 		
-             NodoAsignacion init = new NodoAsignacion(new NodoIdentificador("suma"), new NodoNumEnt(0));
-             lss.add(0, init);
-             RESULT = new NodoCant(lss);
+             RESULT = construirCant(ln);
              System.out.println("[Regla 26] Cant con lista");
          
-              CUP$parser$result = parser.getSymbolFactory().newSymbol("cant",14, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-3)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("cant",10, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-3)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 27: // cant ::= CANT CORCH_A CORCH_C 
             {
-              NodoCant RESULT =null;
+              ExprRes RESULT =null;
 		
-             i = new ArrayList<NodoSentencia>();
-             NodoAsignacion init = new NodoAsignacion(new NodoIdentificador("suma"), new NodoNumEnt(0));
-             i.add(init);
-             RESULT = new NodoCant(i);
+             RESULT = construirCant(new ArrayList<Integer>());
              System.out.println("[Regla 27] Cant con lista vacia");
          
-              CUP$parser$result = parser.getSymbolFactory().newSymbol("cant",14, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("cant",10, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 28: // lista ::= lista COMA NUMENT 
             {
-              List<NodoSentencia> RESULT =null;
+              List<Integer> RESULT =null;
 		int lssleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).left;
 		int lssright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).right;
-		List<NodoSentencia> lss = (List<NodoSentencia>)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
+		List<Integer> lss = (List<Integer>)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
 		int neleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int neright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		String ne = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		
-              NodoIgual cond = new NodoIgual(
-                  new NodoMod(new NodoNumEnt(Integer.parseInt(ne)), new NodoNumEnt(2)),
-                  new NodoNumEnt(0));
-              NodoAsignacion inc = new NodoAsignacion(
-                  new NodoIdentificador("suma"),
-                  new NodoSuma(new NodoIdentificador("suma"), new NodoNumEnt(1)));
-              List<NodoSentencia> body = new ArrayList<NodoSentencia>();
-              body.add(inc);
-              lss.add(new NodoIf(cond, body, null));
+              lss.add(Integer.parseInt(ne));
               RESULT = lss;
               System.out.println("[Regla 28] Lista: agrega " + ne);
           
@@ -787,22 +878,14 @@ class CUP$parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 29: // lista ::= NUMENT 
             {
-              List<NodoSentencia> RESULT =null;
+              List<Integer> RESULT =null;
 		int neleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int neright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		String ne = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		
-              NodoIgual cond = new NodoIgual(
-                  new NodoMod(new NodoNumEnt(Integer.parseInt(ne)), new NodoNumEnt(2)),
-                  new NodoNumEnt(0));
-              NodoAsignacion inc = new NodoAsignacion(
-                  new NodoIdentificador("suma"),
-                  new NodoSuma(new NodoIdentificador("suma"), new NodoNumEnt(1)));
-              List<NodoSentencia> body = new ArrayList<NodoSentencia>();
-              body.add(inc);
-              sentencias_cant = new ArrayList<NodoSentencia>();
-              sentencias_cant.add(new NodoIf(cond, body, null));
-              RESULT = sentencias_cant;
+              List<Integer> res = new ArrayList<Integer>();
+              res.add(Integer.parseInt(ne));
+              RESULT = res;
               System.out.println("[Regla 29] Lista: primer elemento " + ne);
           
               CUP$parser$result = parser.getSymbolFactory().newSymbol("lista",15, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
@@ -812,204 +895,231 @@ class CUP$parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 30: // condicion ::= condicion_logica 
             {
-              NodoExpresionBooleana RESULT =null;
+              CondRes RESULT =null;
 		int clleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int clright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
-		NodoExpresionBooleana cl = (NodoExpresionBooleana)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		CondRes cl = (CondRes)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		
                   RESULT = cl;
                   System.out.println("[Regla 30] Condicion: logica");
               
-              CUP$parser$result = parser.getSymbolFactory().newSymbol("condicion",10, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("condicion",11, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 31: // condicion ::= condicion_operacion 
             {
-              NodoExpresionBooleana RESULT =null;
+              CondRes RESULT =null;
 		int coleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int coright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
-		NodoExpresionBooleana co = (NodoExpresionBooleana)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		CondRes co = (CondRes)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		
                   RESULT = co;
                   System.out.println("[Regla 31] Condicion: operacion");
               
-              CUP$parser$result = parser.getSymbolFactory().newSymbol("condicion",10, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("condicion",11, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 32: // condicion_logica ::= PAR_A condicion_condicionNot PAR_C AND PAR_A condicion_condicionNot PAR_C 
             {
-              NodoExpresionBooleana RESULT =null;
+              CondRes RESULT =null;
 		int ccnleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-5)).left;
 		int ccnright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-5)).right;
-		NodoExpresionBooleana ccn = (NodoExpresionBooleana)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-5)).value;
+		CondRes ccn = (CondRes)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-5)).value;
 		int ccnnleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).left;
 		int ccnnright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).right;
-		NodoExpresionBooleana ccnn = (NodoExpresionBooleana)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
+		CondRes ccnn = (CondRes)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
 		
-                         RESULT = new NodoAnd(ccn, ccnn);
+                         CondRes r = new CondRes();
+                         r.previas = unir(ccn.previas, ccnn.previas);
+                         r.cond = new NodoAnd(ccn.cond, ccnn.cond);
+                         RESULT = r;
                          System.out.println("[Regla 32] Condicion: AND");
                      
-              CUP$parser$result = parser.getSymbolFactory().newSymbol("condicion_logica",11, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-6)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("condicion_logica",12, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-6)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 33: // condicion_logica ::= PAR_A condicion_condicionNot PAR_C OR PAR_A condicion_condicionNot PAR_C 
             {
-              NodoExpresionBooleana RESULT =null;
+              CondRes RESULT =null;
 		int ccnleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-5)).left;
 		int ccnright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-5)).right;
-		NodoExpresionBooleana ccn = (NodoExpresionBooleana)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-5)).value;
+		CondRes ccn = (CondRes)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-5)).value;
 		int ccnnleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).left;
 		int ccnnright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).right;
-		NodoExpresionBooleana ccnn = (NodoExpresionBooleana)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
+		CondRes ccnn = (CondRes)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
 		
-                         RESULT = new NodoOr(ccn, ccnn);
+                         CondRes r = new CondRes();
+                         r.previas = unir(ccn.previas, ccnn.previas);
+                         r.cond = new NodoOr(ccn.cond, ccnn.cond);
+                         RESULT = r;
                          System.out.println("[Regla 33] Condicion: OR");
                      
-              CUP$parser$result = parser.getSymbolFactory().newSymbol("condicion_logica",11, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-6)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("condicion_logica",12, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-6)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 34: // condicion_operacion ::= expresion MAYOR_A expresion 
             {
-              NodoExpresionBooleana RESULT =null;
+              CondRes RESULT =null;
 		int eleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).left;
 		int eright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).right;
-		NodoExpresion e = (NodoExpresion)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
+		ExprRes e = (ExprRes)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
 		int exleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int exright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
-		NodoExpresion ex = (NodoExpresion)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		ExprRes ex = (ExprRes)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		
-                            RESULT = new NodoMayor(e, ex);
+                            CondRes r = new CondRes();
+                            r.previas = unir(e.previas, ex.previas);
+                            r.cond = new NodoMayor(e.expr, ex.expr);
+                            RESULT = r;
                             System.out.println("[Regla 34] Condicion: >");
                         
-              CUP$parser$result = parser.getSymbolFactory().newSymbol("condicion_operacion",12, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("condicion_operacion",13, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 35: // condicion_operacion ::= expresion MAYOR_I expresion 
             {
-              NodoExpresionBooleana RESULT =null;
+              CondRes RESULT =null;
 		int eleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).left;
 		int eright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).right;
-		NodoExpresion e = (NodoExpresion)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
+		ExprRes e = (ExprRes)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
 		int exleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int exright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
-		NodoExpresion ex = (NodoExpresion)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		ExprRes ex = (ExprRes)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		
-                            RESULT = new NodoMayorIgual(e, ex);
+                            CondRes r = new CondRes();
+                            r.previas = unir(e.previas, ex.previas);
+                            r.cond = new NodoMayorIgual(e.expr, ex.expr);
+                            RESULT = r;
                             System.out.println("[Regla 35] Condicion: >=");
                         
-              CUP$parser$result = parser.getSymbolFactory().newSymbol("condicion_operacion",12, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("condicion_operacion",13, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 36: // condicion_operacion ::= expresion MENOR_A expresion 
             {
-              NodoExpresionBooleana RESULT =null;
+              CondRes RESULT =null;
 		int eleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).left;
 		int eright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).right;
-		NodoExpresion e = (NodoExpresion)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
+		ExprRes e = (ExprRes)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
 		int exleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int exright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
-		NodoExpresion ex = (NodoExpresion)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		ExprRes ex = (ExprRes)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		
-                            RESULT = new NodoMenor(e, ex);
+                            CondRes r = new CondRes();
+                            r.previas = unir(e.previas, ex.previas);
+                            r.cond = new NodoMenor(e.expr, ex.expr);
+                            RESULT = r;
                             System.out.println("[Regla 36] Condicion: <");
                         
-              CUP$parser$result = parser.getSymbolFactory().newSymbol("condicion_operacion",12, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("condicion_operacion",13, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 37: // condicion_operacion ::= expresion MENOR_I expresion 
             {
-              NodoExpresionBooleana RESULT =null;
+              CondRes RESULT =null;
 		int eleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).left;
 		int eright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).right;
-		NodoExpresion e = (NodoExpresion)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
+		ExprRes e = (ExprRes)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
 		int exleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int exright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
-		NodoExpresion ex = (NodoExpresion)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		ExprRes ex = (ExprRes)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		
-                            RESULT = new NodoMenorIgual(e, ex);
+                            CondRes r = new CondRes();
+                            r.previas = unir(e.previas, ex.previas);
+                            r.cond = new NodoMenorIgual(e.expr, ex.expr);
+                            RESULT = r;
                             System.out.println("[Regla 37] Condicion: <=");
                         
-              CUP$parser$result = parser.getSymbolFactory().newSymbol("condicion_operacion",12, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("condicion_operacion",13, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 38: // condicion_operacion ::= expresion DISTINTO expresion 
             {
-              NodoExpresionBooleana RESULT =null;
+              CondRes RESULT =null;
 		int eleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).left;
 		int eright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).right;
-		NodoExpresion e = (NodoExpresion)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
+		ExprRes e = (ExprRes)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
 		int exleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int exright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
-		NodoExpresion ex = (NodoExpresion)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		ExprRes ex = (ExprRes)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		
-                            RESULT = new NodoDistinto(e, ex);
+                            CondRes r = new CondRes();
+                            r.previas = unir(e.previas, ex.previas);
+                            r.cond = new NodoDistinto(e.expr, ex.expr);
+                            RESULT = r;
                             System.out.println("[Regla 38] Condicion: <>");
                         
-              CUP$parser$result = parser.getSymbolFactory().newSymbol("condicion_operacion",12, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("condicion_operacion",13, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 39: // condicion_operacion ::= expresion IGUAL_A expresion 
             {
-              NodoExpresionBooleana RESULT =null;
+              CondRes RESULT =null;
 		int eleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).left;
 		int eright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).right;
-		NodoExpresion e = (NodoExpresion)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
+		ExprRes e = (ExprRes)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
 		int exleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int exright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
-		NodoExpresion ex = (NodoExpresion)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		ExprRes ex = (ExprRes)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		
-                            RESULT = new NodoIgual(e, ex);
+                            CondRes r = new CondRes();
+                            r.previas = unir(e.previas, ex.previas);
+                            r.cond = new NodoIgual(e.expr, ex.expr);
+                            RESULT = r;
                             System.out.println("[Regla 39] Condicion: ==");
                         
-              CUP$parser$result = parser.getSymbolFactory().newSymbol("condicion_operacion",12, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("condicion_operacion",13, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 40: // condicion_condicionNot ::= condicion_operacion 
             {
-              NodoExpresionBooleana RESULT =null;
+              CondRes RESULT =null;
 		int coleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int coright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
-		NodoExpresionBooleana co = (NodoExpresionBooleana)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		CondRes co = (CondRes)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		
                                RESULT = co;
                                System.out.println("[Regla 40] Condicion sin NOT");
                            
-              CUP$parser$result = parser.getSymbolFactory().newSymbol("condicion_condicionNot",13, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("condicion_condicionNot",14, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 41: // condicion_condicionNot ::= NOT condicion_operacion 
             {
-              NodoExpresionBooleana RESULT =null;
+              CondRes RESULT =null;
 		int coleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int coright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
-		NodoExpresionBooleana co = (NodoExpresionBooleana)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		CondRes co = (CondRes)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		
-                               RESULT = new NodoNot(co);
+                               CondRes r = new CondRes();
+                               r.previas = co.previas;
+                               r.cond = new NodoNot(co.cond);
+                               RESULT = r;
                                System.out.println("[Regla 41] Condicion con NOT");
                            
-              CUP$parser$result = parser.getSymbolFactory().newSymbol("condicion_condicionNot",13, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("condicion_condicionNot",14, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
 
