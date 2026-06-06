@@ -12,4 +12,9 @@ public class NodoIdentificador extends NodoExpresion {
     public String getDescripcionNodo() {
         return "ID: " + identificador;
     }
+
+    @Override
+    public ResultadoAssembler generarAssembler() {
+        return new ResultadoAssembler("", "_" + this.identificador);
+    }
 }

@@ -17,4 +17,18 @@ public class NodoAsignacion extends NodoSentencia {
                 identificador.graficar(miId) +
                 expresion.graficar(miId);
     }
+
+    @Override
+    public ResultadoAssembler generarAssembler() {
+        ResultadoAssembler expr = expresion.generarAssembler();
+        ResultadoAssembler var = identificador.generarAssembler();
+
+        StringBuilder asm = new StringBuilder();
+        asm.append(expr.getCodigo());
+
+        asm.append("FLD ").append(expr.getOperando()).append("\n");
+        asm.append("FSTP ").append(var.getOperando()).append("\n\n");
+
+        return new ResultadoAssembler(asm.toString(), "");
+    }
 }

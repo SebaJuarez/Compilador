@@ -46,6 +46,7 @@ action code
 
         String temporal = "__cant" + contadorCant++;
         currentCantVar = temporal;
+        GeneradorAssembler.declarables.add(temporal + " dd ?");
 
         List<NodoSentencia> sentencias = new ArrayList<NodoSentencia>();
 

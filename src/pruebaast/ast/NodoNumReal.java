@@ -12,4 +12,12 @@ public class NodoNumReal extends NodoExpresion {
     public String getDescripcionNodo() {
         return "REAL: " + valor;
     }
+
+    @Override
+    public ResultadoAssembler generarAssembler() {
+        // Reemplaza el punto decimal por un guión bajo para que sea una etiqueta ASM
+        // válida
+        String val = String.valueOf(this.valor).replace(".", "_").replace("-", "_neg_");
+        return new ResultadoAssembler("", "_" + val);
+    }
 }

@@ -3,7 +3,9 @@ package gui;
 import compilador.Lexico;
 import compilador.parser;
 import java_cup.runtime.ComplexSymbolFactory;
+import pruebaast.ast.GeneradorAssembler;
 import pruebaast.ast.NodoPrograma;
+import pruebaast.ast.ResultadoAssembler;
 
 import javax.swing.*;
 import javax.swing.border.CompoundBorder;
@@ -16,6 +18,7 @@ import java.awt.event.MouseEvent;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class VentanaCompilador extends JFrame {
 
@@ -137,7 +140,8 @@ public class VentanaCompilador extends JFrame {
         leftSplit.setBorder(null);
 
         // Derecha: árbol AST
-        JPanel astPanel = buildPanel("🌳 Árbol AST (formato Graphviz DOT)", taArbol = buildTextArea(FONT_MONO, new Color(210, 240, 210)));
+        JPanel astPanel = buildPanel("🌳 Árbol AST (formato Graphviz DOT)",
+                taArbol = buildTextArea(FONT_MONO, new Color(210, 240, 210)));
 
         JButton btnGraphviz = createButton("🔗 Abrir en Graphviz Online", ACCENT, BG_INPUT);
         btnGraphviz.setFont(new Font("Segoe UI", Font.PLAIN, 11));
@@ -336,6 +340,12 @@ public class VentanaCompilador extends JFrame {
                     } else {
                         System.out.println("\n[ Error: el árbol es nulo ]");
                     }
+
+                    GeneradorAssembler.reset(); // Por si compilan varias veces seguidas
+                    ResultadoAssembler finalAsm = arbol.generarAssembler();
+
+                    // Escribir el string 'finalAsm.getCodigo()' en un archivo "Final.asm"
+                    Files.write(Paths.get("Final.asm"), finalAsm.getCodigo().getBytes());
 
                 } catch (Exception ex) {
                     System.out.println("\n[ ERROR ]: " + ex.getMessage());

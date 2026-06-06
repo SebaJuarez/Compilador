@@ -141,16 +141,19 @@ CANT = cant | CANT
 <YYINITIAL> {
     
     {VARIABLE}   {
-        writeSymbolInTable(yytext() + ",VARIABLE,,_,_");
+        writeSymbolInTable("_" + yytext() + ",VARIABLE,,_,_");
         return symbol(sym.VARIABLE, yytext());
     }
+    
     {NUMENT} {
         validate_int_number(yytext());
-        writeSymbolInTable("_"+yytext()+", NUMENT , _ , "+yytext()+" , _ ");
+        writeSymbolInTable("_cte" + yytext() + ", NUMENT , _ , " + yytext() + " , _ ");
         return symbol(sym.NUMENT, yytext());
     }
+    
     {NUMREAL}  {
-        writeSymbolInTable("_"+yytext()+", NUMREAL , _ , "+yytext()+" , _ ");
+        String nombreAsm = "_cte" + yytext().replace(".", "_");
+        writeSymbolInTable(nombreAsm + ", NUMREAL , _ , " + yytext() + " , _ ");
         return symbol(sym.NUMREAL, yytext());
     }
 
@@ -164,7 +167,11 @@ CANT = cant | CANT
     {PUT}      { return symbol(sym.PUT, yytext()); }
     {VALSTRING} {
         validate_string(yytext());
-        writeSymbolInTable("_"+yytext().substring(1, yytext().length() - 1)+ ", VALSTRING , _ ,"+yytext().substring(1, yytext().length() - 1)+","+ yytext().substring(1, yytext().length() - 1).length());
+        String valorSinComillas = yytext().substring(1, yytext().length() - 1);
+        
+        String nombreAsm = "_" + valorSinComillas.replaceAll("[^a-zA-Z0-9]", "_");
+        
+        writeSymbolInTable(nombreAsm + ", STRING , _ , " + valorSinComillas + " , " + valorSinComillas.length());
         return symbol(sym.VALSTRING, yytext());
     }
     {STRING}   { return symbol(sym.STRING, yytext()); }
