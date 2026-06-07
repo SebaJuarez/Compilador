@@ -61,47 +61,47 @@ public class NodoPrograma extends Nodo {
         // PASO 3: Sección de Datos (.DATA)
         asm.append(".DATA\n");
 
-        // A) Leer variables y constantes del usuario desde ts.txt
-        try (BufferedReader br = new BufferedReader(new FileReader("ts.txt"))) {
+        // A) Leer ts.txt y meterlo en 'declarables' para evitar duplicados
+        try (java.io.BufferedReader br = new java.io.BufferedReader(new java.io.FileReader("ts.txt"))) {
             String linea;
             while ((linea = br.readLine()) != null) {
                 if (linea.trim().isEmpty())
                     continue;
 
-                // El 5 evita que los strings con comas se rompan
                 String[] partes = linea.split(",", 5);
-
                 if (partes.length >= 4) {
                     String nombre = partes[0].trim();
                     String tipo = partes[1].trim();
 
                     switch (tipo) {
                         case "VARIABLE":
-                            asm.append(nombre).append(" dd ?\n");
+                            GeneradorAssembler.declarables.add(nombre + " dd ?");
                             break;
                         case "NUMENT":
                             String valorEnt = partes[3].trim();
-                            asm.append(nombre).append(" dd ").append(valorEnt).append(".0\n");
+                            GeneradorAssembler.declarables.add(nombre + " dd " + valorEnt + ".0");
                             break;
                         case "NUMREAL":
                             String valorReal = partes[3].trim();
-                            asm.append(nombre).append(" dd ").append(valorReal).append("\n");
+                            GeneradorAssembler.declarables.add(nombre + " dd " + valorReal);
                             break;
                         case "STRING":
+                        case "VALSTRING":
                             String valorStr = partes[3].trim();
-                            asm.append(nombre).append(" db \"").append(valorStr).append("\", '$', ")
-                                    .append(valorStr.length()).append(" dup(?)\n");
+                            GeneradorAssembler.declarables
+                                    .add(nombre + " db \"" + valorStr + "\", '$', " + valorStr.length() + " dup(?)");
                             break;
                     }
                 }
             }
-        } catch (IOException e) {
+        } catch (java.io.IOException e) {
             System.out.println("Error al leer la Tabla de Simbolos: " + e.getMessage());
         }
 
-        // B) Volcar las variables temporales (@aux) que se generaron en el PASO 1
-        for (String declaracionAux : GeneradorAssembler.declarables) {
-            asm.append(declaracionAux).append("\n");
+        // B) Escribir TODO junto (Variables del TS + Auxiliares).
+        // Al ser un Set, no habrá NINGÚN duplicado.
+        for (String declaracion : GeneradorAssembler.declarables) {
+            asm.append(declaracion).append("\n");
         }
         asm.append("\n");
 

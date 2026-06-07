@@ -9,7 +9,13 @@ public class GeneradorAssembler {
     private static int contadorEtiquetas = 1;
 
     public static String getNuevaAuxiliar() {
-        return "@aux" + (contadorAux++);
+        // Le agregamos el guion bajo al principio según la teoría de la cátedra
+        String aux = "_@aux" + (contadorAux++);
+
+        // Lo anotamos para que NodoPrograma lo imprima en el .DATA
+        declarables.add(aux + " dd ?");
+
+        return aux;
     }
 
     // Opcional: método para resetear el contador entre compilaciones

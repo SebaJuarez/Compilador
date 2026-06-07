@@ -6,20 +6,37 @@ include number.asm
 .STACK 200h
 
 .DATA
-__x dd ?
+___cant0 dd ?
 _cte10 dd 10.0
-__y dd ?
 _cte20 dd 20.0
-__resultado dd ?
+_@aux1 dd ?
 _cte15 dd 15.0
 _cte2 dd 2.0
+_@aux2 dd ?
 _cte1 dd 1.0
-__cant dd ?
+_@aux3 dd ?
+_cte0 dd 0.0
+_@aux4 dd ?
+_@aux5 dd ?
 _cte4 dd 4.0
+_@aux6 dd ?
+_@aux7 dd ?
 _cte7 dd 7.0
+_@aux8 dd ?
+_@aux9 dd ?
 _cte8 dd 8.0
+_@aux10 dd ?
+_@aux11 dd ?
 _cte3 dd 3.0
+_@aux12 dd ?
+_@aux13 dd ?
 _cte6 dd 6.0
+_@aux14 dd ?
+_@aux15 dd ?
+__x dd ?
+__y dd ?
+__resultado dd ?
+__cant dd ?
 
 .CODE
 START:
@@ -27,22 +44,22 @@ MOV EAX, @DATA
 MOV DS, EAX
 MOV ES, EAX
 
-FLD _10
+FLD _cte10
 FSTP __x
 
-FLD _20
+FLD _cte20
 FSTP __y
 
 FLD __x
 FLD __y
 FADD
-FSTP @aux1
+FSTP _@aux1
 
-FLD @aux1
+FLD _@aux1
 FSTP __resultado
 
 FLD __resultado
-FLD _15
+FLD _cte15
 FXCH
 FCOMP
 FSTSW AX
@@ -50,16 +67,15 @@ SAHF
 JBE Etiq2
 
 FLD __resultado
-FLD _2
+FLD _cte2
 FMUL
-FSTP @aux2
+FSTP _@aux2
 
-FLD @aux2
+FLD _@aux2
 FSTP __resultado
 
-MOV DX, OFFSET __resultado
-MOV AH, 9
-INT 21h
+DisplayFloat __resultado, 2
+newLine 1
 
 Etiq2:
 
@@ -73,31 +89,30 @@ SAHF
 JAE Etiq4
 
 FLD __x
-FLD _1
+FLD _cte1
 FADD
-FSTP @aux3
+FSTP _@aux3
 
-FLD @aux3
+FLD _@aux3
 FSTP __x
 
-MOV DX, OFFSET __x
-MOV AH, 9
-INT 21h
+DisplayFloat __x, 2
+newLine 1
 
 JMP Etiq3
 Etiq4:
 
-FLD _0
+FLD _cte0
 FSTP ___cant0
 
-FLD _2
-FLD _2
+FLD _cte2
+FLD _cte2
 FPREM
-FSTP @aux4
+FSTP _@aux4
 FSTP ST(0)
 
-FLD @aux4
-FLD _0
+FLD _@aux4
+FLD _cte0
 FXCH
 FCOMP
 FSTSW AX
@@ -105,23 +120,23 @@ SAHF
 JNE Etiq6
 
 FLD ___cant0
-FLD _1
+FLD _cte1
 FADD
-FSTP @aux5
+FSTP _@aux5
 
-FLD @aux5
+FLD _@aux5
 FSTP ___cant0
 
 Etiq6:
 
-FLD _2
-FLD _4
+FLD _cte2
+FLD _cte4
 FPREM
-FSTP @aux6
+FSTP _@aux6
 FSTP ST(0)
 
-FLD @aux6
-FLD _0
+FLD _@aux6
+FLD _cte0
 FXCH
 FCOMP
 FSTSW AX
@@ -129,23 +144,23 @@ SAHF
 JNE Etiq8
 
 FLD ___cant0
-FLD _1
+FLD _cte1
 FADD
-FSTP @aux7
+FSTP _@aux7
 
-FLD @aux7
+FLD _@aux7
 FSTP ___cant0
 
 Etiq8:
 
-FLD _2
-FLD _7
+FLD _cte2
+FLD _cte7
 FPREM
-FSTP @aux8
+FSTP _@aux8
 FSTP ST(0)
 
-FLD @aux8
-FLD _0
+FLD _@aux8
+FLD _cte0
 FXCH
 FCOMP
 FSTSW AX
@@ -153,23 +168,23 @@ SAHF
 JNE Etiq10
 
 FLD ___cant0
-FLD _1
+FLD _cte1
 FADD
-FSTP @aux9
+FSTP _@aux9
 
-FLD @aux9
+FLD _@aux9
 FSTP ___cant0
 
 Etiq10:
 
-FLD _2
-FLD _8
+FLD _cte2
+FLD _cte8
 FPREM
-FSTP @aux10
+FSTP _@aux10
 FSTP ST(0)
 
-FLD @aux10
-FLD _0
+FLD _@aux10
+FLD _cte0
 FXCH
 FCOMP
 FSTSW AX
@@ -177,23 +192,23 @@ SAHF
 JNE Etiq12
 
 FLD ___cant0
-FLD _1
+FLD _cte1
 FADD
-FSTP @aux11
+FSTP _@aux11
 
-FLD @aux11
+FLD _@aux11
 FSTP ___cant0
 
 Etiq12:
 
-FLD _2
-FLD _3
+FLD _cte2
+FLD _cte3
 FPREM
-FSTP @aux12
+FSTP _@aux12
 FSTP ST(0)
 
-FLD @aux12
-FLD _0
+FLD _@aux12
+FLD _cte0
 FXCH
 FCOMP
 FSTSW AX
@@ -201,23 +216,23 @@ SAHF
 JNE Etiq14
 
 FLD ___cant0
-FLD _1
+FLD _cte1
 FADD
-FSTP @aux13
+FSTP _@aux13
 
-FLD @aux13
+FLD _@aux13
 FSTP ___cant0
 
 Etiq14:
 
-FLD _2
-FLD _6
+FLD _cte2
+FLD _cte6
 FPREM
-FSTP @aux14
+FSTP _@aux14
 FSTP ST(0)
 
-FLD @aux14
-FLD _0
+FLD _@aux14
+FLD _cte0
 FXCH
 FCOMP
 FSTSW AX
@@ -225,11 +240,11 @@ SAHF
 JNE Etiq16
 
 FLD ___cant0
-FLD _1
+FLD _cte1
 FADD
-FSTP @aux15
+FSTP _@aux15
 
-FLD @aux15
+FLD _@aux15
 FSTP ___cant0
 
 Etiq16:
@@ -237,9 +252,8 @@ Etiq16:
 FLD ___cant0
 FSTP __cant
 
-MOV DX, OFFSET __cant
-MOV AH, 9
-INT 21h
+DisplayFloat __cant, 2
+newLine 1
 
 
 MOV EAX, 4C00h
