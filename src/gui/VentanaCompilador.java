@@ -47,7 +47,6 @@ public class VentanaCompilador extends JFrame {
     private JButton btnEjecutar;
     private JButton btnCompilar;
     private JButton btnLimpiar;
-    private String rutaTasm = null;
     private JTextArea taConsola;
     private JTextArea taArbol;
     private JTextArea taCodigo;
@@ -374,6 +373,25 @@ public class VentanaCompilador extends JFrame {
         worker.execute();
     }
 
+    private String encontrarDosBox() {
+        String[] candidatos = {
+            "C:\\Program Files (x86)\\DOSBox-0.74-3\\DOSBox.exe",
+            "C:\\Program Files (x86)\\DOSBox-0.74\\DOSBox.exe",
+            "C:\\Program Files\\DOSBox-0.74-3\\DOSBox.exe",
+            "C:\\Program Files\\DOSBox-0.74\\DOSBox.exe"
+        };
+        for (String ruta : candidatos) {
+            if (new File(ruta).exists()) return ruta;
+        }
+        try {
+            Process p = new ProcessBuilder("dosbox", "-help").start();
+            p.destroy();
+            return "dosbox";
+        } catch (IOException e) {
+            return null;
+        }
+    }
+
     private void compilarExe() {
         File finalAsm = new File("Final.asm");
         if (!finalAsm.exists()) {
@@ -381,48 +399,56 @@ public class VentanaCompilador extends JFrame {
             return;
         }
 
-        if (rutaTasm == null) {
-            try {
-                new ProcessBuilder("tasm").start().destroy();
-            } catch (IOException ex) {
-                JFileChooser fc = new JFileChooser();
-                fc.setDialogTitle("Seleccionar tasm.exe");
-                fc.setFileFilter(new FileNameExtensionFilter("Ejecutables (*.exe)", "exe"));
-                if (fc.showOpenDialog(this) != JFileChooser.APPROVE_OPTION) return;
-                rutaTasm = fc.getSelectedFile().getAbsolutePath();
-            }
+        String dosbox = encontrarDosBox();
+        if (dosbox == null) {
+            JOptionPane.showMessageDialog(this,
+                "Para compilar a .exe necesitás DOSBox instalado.\n" +
+                "Descargalo de: https://www.dosbox.com (versión 0.74-3)\n" +
+                "Una vez instalado, volvé a intentarlo.",
+                "DOSBox no encontrado", JOptionPane.WARNING_MESSAGE);
+            return;
         }
 
-        String tasmPath = rutaTasm != null ? rutaTasm : "tasm";
-        String dirTasm = rutaTasm != null ? new File(rutaTasm).getParent() : null;
-        String tlinkPath = dirTasm != null ? dirTasm + File.separator + "tlink.exe" : "tlink";
+        File tasmExe = new File("tools/tasm/TASM.EXE");
+        if (!tasmExe.exists()) {
+            JOptionPane.showMessageDialog(this,
+                "No se encontró TASM.EXE en tools/tasm/ del proyecto.\n" +
+                "Copiá TASM.EXE y TLINK.EXE a esa carpeta y volvé a intentarlo.",
+                "TASM no encontrado", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
 
         btnCompilar.setEnabled(false);
         setEstado("Ensamblando...", ACCENT);
 
+        String dosboxFinal = dosbox;
         SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
             boolean exito = false;
 
             @Override
             protected Void doInBackground() {
                 try {
-                    ProcessBuilder pbTasm = new ProcessBuilder(tasmPath, "Final.asm");
-                    pbTasm.redirectErrorStream(true);
-                    Process pTasm = pbTasm.start();
-                    System.out.println(new String(pTasm.getInputStream().readAllBytes()));
-                    pTasm.waitFor();
+                    File projectDir = new File(".").getCanonicalFile();
+                    File tasmDir = new File("tools/tasm").getCanonicalFile();
 
-                    if (pTasm.exitValue() != 0) return null;
+                    new File("Final.exe").delete();
 
-                    ProcessBuilder pbTlink = new ProcessBuilder(tlinkPath, "Final.obj");
-                    pbTlink.redirectErrorStream(true);
-                    Process pTlink = pbTlink.start();
-                    System.out.println(new String(pTlink.getInputStream().readAllBytes()));
-                    pTlink.waitFor();
+                    ProcessBuilder pb = new ProcessBuilder(
+                        dosboxFinal,
+                        "-c", "mount p " + projectDir.getAbsolutePath(),
+                        "-c", "mount t " + tasmDir.getAbsolutePath(),
+                        "-c", "p:",
+                        "-c", "t:\\tasm Final.asm",
+                        "-c", "t:\\tlink Final.obj",
+                        "-c", "exit",
+                        "-exit"
+                    );
+                    pb.redirectErrorStream(true);
+                    Process p = pb.start();
+                    p.getInputStream().transferTo(OutputStream.nullOutputStream());
+                    p.waitFor();
 
-                    if (pTlink.exitValue() != 0) return null;
-
-                    exito = true;
+                    exito = new File("Final.exe").exists();
                 } catch (Exception ex) {
                     System.out.println("Error: " + ex.getMessage());
                 }
@@ -435,7 +461,7 @@ public class VentanaCompilador extends JFrame {
                 if (exito) {
                     setEstado("✓  Final.exe generado.", ACCENT2);
                 } else {
-                    setEstado("✗  Error al compilar el ejecutable.", ERR_COLOR);
+                    setEstado("✗  Error al compilar. Revisá el ensamblador.", ERR_COLOR);
                 }
             }
         };
