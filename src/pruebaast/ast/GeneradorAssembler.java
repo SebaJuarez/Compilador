@@ -21,6 +21,8 @@ public class GeneradorAssembler {
     // Opcional: método para resetear el contador entre compilaciones
     public static void reset() {
         contadorAux = 1;
+        contadorEtiquetas = 1;
+        declarables.clear();
     }
 
     public static String getNuevaEtiqueta() {
