@@ -45,7 +45,9 @@ public class VentanaCompilador extends JFrame {
     private JTextField txtRuta;
     private JButton btnSeleccionar;
     private JButton btnEjecutar;
+    private JButton btnCompilar;
     private JButton btnLimpiar;
+    private String rutaTasm = null;
     private JTextArea taConsola;
     private JTextArea taArbol;
     private JTextArea taCodigo;
@@ -112,16 +114,19 @@ public class VentanaCompilador extends JFrame {
 
         btnSeleccionar = createButton("📂 Seleccionar", ACCENT, BG_INPUT);
         btnEjecutar = createButton("▶  Ejecutar", ACCENT2, new Color(30, 80, 50));
+        btnCompilar = createButton("⚙  Compilar .exe", new Color(255, 193, 70), new Color(80, 60, 10));
         btnLimpiar = createButton("✕ Limpiar", TEXT_DIM, BG_INPUT);
 
         btnSeleccionar.addActionListener(e -> seleccionarArchivo());
         btnEjecutar.addActionListener(e -> ejecutar());
+        btnCompilar.addActionListener(e -> compilarExe());
         btnLimpiar.addActionListener(e -> limpiar());
 
         filePanel.add(lblArchivo);
         filePanel.add(txtRuta);
         filePanel.add(btnSeleccionar);
         filePanel.add(btnEjecutar);
+        filePanel.add(btnCompilar);
         filePanel.add(btnLimpiar);
 
         header.add(filePanel, BorderLayout.CENTER);
@@ -363,6 +368,74 @@ public class VentanaCompilador extends JFrame {
                     setEstado("✓  Compilación exitosa. Árbol AST generado.", ACCENT2);
                 } else {
                     setEstado("✗  Se encontraron errores. Revisá la consola.", ERR_COLOR);
+                }
+            }
+        };
+        worker.execute();
+    }
+
+    private void compilarExe() {
+        File finalAsm = new File("Final.asm");
+        if (!finalAsm.exists()) {
+            setEstado("Primero compilá el fuente para generar Final.asm.", ERR_COLOR);
+            return;
+        }
+
+        if (rutaTasm == null) {
+            try {
+                new ProcessBuilder("tasm").start().destroy();
+            } catch (IOException ex) {
+                JFileChooser fc = new JFileChooser();
+                fc.setDialogTitle("Seleccionar tasm.exe");
+                fc.setFileFilter(new FileNameExtensionFilter("Ejecutables (*.exe)", "exe"));
+                if (fc.showOpenDialog(this) != JFileChooser.APPROVE_OPTION) return;
+                rutaTasm = fc.getSelectedFile().getAbsolutePath();
+            }
+        }
+
+        String tasmPath = rutaTasm != null ? rutaTasm : "tasm";
+        String dirTasm = rutaTasm != null ? new File(rutaTasm).getParent() : null;
+        String tlinkPath = dirTasm != null ? dirTasm + File.separator + "tlink.exe" : "tlink";
+
+        btnCompilar.setEnabled(false);
+        setEstado("Ensamblando...", ACCENT);
+
+        SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+            boolean exito = false;
+
+            @Override
+            protected Void doInBackground() {
+                try {
+                    ProcessBuilder pbTasm = new ProcessBuilder(tasmPath, "Final.asm");
+                    pbTasm.redirectErrorStream(true);
+                    Process pTasm = pbTasm.start();
+                    System.out.println(new String(pTasm.getInputStream().readAllBytes()));
+                    pTasm.waitFor();
+
+                    if (pTasm.exitValue() != 0) return null;
+
+                    ProcessBuilder pbTlink = new ProcessBuilder(tlinkPath, "Final.obj");
+                    pbTlink.redirectErrorStream(true);
+                    Process pTlink = pbTlink.start();
+                    System.out.println(new String(pTlink.getInputStream().readAllBytes()));
+                    pTlink.waitFor();
+
+                    if (pTlink.exitValue() != 0) return null;
+
+                    exito = true;
+                } catch (Exception ex) {
+                    System.out.println("Error: " + ex.getMessage());
+                }
+                return null;
+            }
+
+            @Override
+            protected void done() {
+                btnCompilar.setEnabled(true);
+                if (exito) {
+                    setEstado("✓  Final.exe generado.", ACCENT2);
+                } else {
+                    setEstado("✗  Error al compilar el ejecutable.", ERR_COLOR);
                 }
             }
         };
