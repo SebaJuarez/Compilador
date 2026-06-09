@@ -6,3 +6,21 @@ bin/
 .classpath
 .project
 .settings/
+
+# Salida del compilador (se generan al ejecutar)
+Final.asm
+Final.exe
+Final.obj
+Final.obj~
+ts.txt
+
+# Salida de TASM/TLINK
+*.MAP
+*.map
+
+# Archivos temporales de debug
+dosbox_debug.conf
+dosbox_test.conf
+DIR_OUT.TXT
+TASM_OUT.TXT
+*.png

@@ -1,0 +1,6 @@
+program
+    _a = 3.14
+    _b = 1.5
+    _c = _a + _b
+    put(_c)
+end
