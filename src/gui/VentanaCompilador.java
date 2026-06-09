@@ -429,17 +429,17 @@ public class VentanaCompilador extends JFrame {
             protected Void doInBackground() {
                 try {
                     File projectDir = new File(".").getCanonicalFile();
-                    File tasmDir = new File("tools/tasm").getCanonicalFile();
 
                     new File("Final.exe").delete();
+                    new File("Final.obj").delete();
 
                     ProcessBuilder pb = new ProcessBuilder(
                         dosboxFinal,
-                        "-c", "mount p " + projectDir.getAbsolutePath(),
-                        "-c", "mount t " + tasmDir.getAbsolutePath(),
-                        "-c", "p:",
-                        "-c", "t:\\tasm Final.asm",
-                        "-c", "t:\\tlink Final.obj",
+                        "-c", "mount c " + projectDir.getAbsolutePath(),
+                        "-c", "set PATH=c:\\tools\\tasm",
+                        "-c", "c:",
+                        "-c", "tasm Final.asm",
+                        "-c", "tlink Final.obj",
                         "-c", "exit",
                         "-exit"
                     );
