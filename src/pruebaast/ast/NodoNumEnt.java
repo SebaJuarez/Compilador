@@ -12,4 +12,14 @@ public class NodoNumEnt extends NodoExpresion {
     public String getDescripcionNodo() {
         return "ENT: " + valor;
     }
+
+    @Override
+    public ResultadoAssembler generarAssembler() {
+        String val = String.valueOf(this.valor).replace("-", "_neg_");
+        String nombre = "_cte" + val;
+
+        GeneradorAssembler.declarables.add(nombre + " dd " + this.valor + ".0");
+
+        return new ResultadoAssembler("", nombre);
+    }
 }

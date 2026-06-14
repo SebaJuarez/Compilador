@@ -1,12 +1,15 @@
 program
-    _x = 10
+    _x = 1
     _y = 20
+    _r = 5.4
     _resultado = _x + _y
-    if (_resultado > 15) {
+    if ((_resultado > 15) & (_r > _y)) {
         _resultado = _resultado * 2
-        put(_resultado)
+    } else {
+        _resultado = _resultado % 3
     }
-    while (_x < _y) {
+    put(_resultado)
+    while (_x < cant[2, 5, 6, 8, 10, 2]) {
         _x = _x + 1
         put(_x)
     }

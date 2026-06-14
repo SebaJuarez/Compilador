@@ -12,4 +12,12 @@ public class NodoNumReal extends NodoExpresion {
     public String getDescripcionNodo() {
         return "REAL: " + valor;
     }
+
+    @Override
+    public ResultadoAssembler generarAssembler() {
+        String val = String.valueOf(this.valor).replace(".", "_").replace("-", "_neg_");
+        String nombre = "_cte" + val;
+        GeneradorAssembler.declarables.add(nombre + " dd " + this.valor);
+        return new ResultadoAssembler("", nombre);
+    }
 }

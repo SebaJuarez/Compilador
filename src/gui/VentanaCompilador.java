@@ -1,9 +1,12 @@
 package gui;
 
+
 import compilador.Lexico;
 import compilador.parser;
 import java_cup.runtime.ComplexSymbolFactory;
+import pruebaast.ast.GeneradorAssembler;
 import pruebaast.ast.NodoPrograma;
+import pruebaast.ast.ResultadoAssembler;
 
 import javax.swing.*;
 import javax.swing.border.CompoundBorder;
@@ -16,6 +19,7 @@ import java.awt.event.MouseEvent;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class VentanaCompilador extends JFrame {
 
@@ -42,6 +46,7 @@ public class VentanaCompilador extends JFrame {
     private JTextField txtRuta;
     private JButton btnSeleccionar;
     private JButton btnEjecutar;
+    private JButton btnCompilar;
     private JButton btnLimpiar;
     private JTextArea taConsola;
     private JTextArea taArbol;
@@ -109,16 +114,19 @@ public class VentanaCompilador extends JFrame {
 
         btnSeleccionar = createButton("📂 Seleccionar", ACCENT, BG_INPUT);
         btnEjecutar = createButton("▶  Ejecutar", ACCENT2, new Color(30, 80, 50));
+        btnCompilar = createButton("⚙  Compilar .exe", new Color(255, 193, 70), new Color(80, 60, 10));
         btnLimpiar = createButton("✕ Limpiar", TEXT_DIM, BG_INPUT);
 
         btnSeleccionar.addActionListener(e -> seleccionarArchivo());
         btnEjecutar.addActionListener(e -> ejecutar());
+        btnCompilar.addActionListener(e -> compilarExe());
         btnLimpiar.addActionListener(e -> limpiar());
 
         filePanel.add(lblArchivo);
         filePanel.add(txtRuta);
         filePanel.add(btnSeleccionar);
         filePanel.add(btnEjecutar);
+        filePanel.add(btnCompilar);
         filePanel.add(btnLimpiar);
 
         header.add(filePanel, BorderLayout.CENTER);
@@ -137,7 +145,8 @@ public class VentanaCompilador extends JFrame {
         leftSplit.setBorder(null);
 
         // Derecha: árbol AST
-        JPanel astPanel = buildPanel("🌳 Árbol AST (formato Graphviz DOT)", taArbol = buildTextArea(FONT_MONO, new Color(210, 240, 210)));
+        JPanel astPanel = buildPanel("🌳 Árbol AST (formato Graphviz DOT)",
+                taArbol = buildTextArea(FONT_MONO, new Color(210, 240, 210)));
 
         JButton btnGraphviz = createButton("🔗 Abrir en Graphviz Online", ACCENT, BG_INPUT);
         btnGraphviz.setFont(new Font("Segoe UI", Font.PLAIN, 11));
@@ -337,6 +346,12 @@ public class VentanaCompilador extends JFrame {
                         System.out.println("\n[ Error: el árbol es nulo ]");
                     }
 
+                    GeneradorAssembler.reset(); // Por si compilan varias veces seguidas
+                    ResultadoAssembler finalAsm = arbol.generarAssembler();
+
+                    // Escribir el string 'finalAsm.getCodigo()' en un archivo "Final.asm"
+                    Files.write(Paths.get("Final.asm"), finalAsm.getCodigo().getBytes());
+
                 } catch (Exception ex) {
                     System.out.println("\n[ ERROR ]: " + ex.getMessage());
                     ex.printStackTrace();
@@ -353,6 +368,101 @@ public class VentanaCompilador extends JFrame {
                     setEstado("✓  Compilación exitosa. Árbol AST generado.", ACCENT2);
                 } else {
                     setEstado("✗  Se encontraron errores. Revisá la consola.", ERR_COLOR);
+                }
+            }
+        };
+        worker.execute();
+    }
+
+    private String encontrarDosBox() {
+        String[] candidatos = {
+            "C:\\Program Files (x86)\\DOSBox-0.74-3\\DOSBox.exe",
+            "C:\\Program Files (x86)\\DOSBox-0.74\\DOSBox.exe",
+            "C:\\Program Files\\DOSBox-0.74-3\\DOSBox.exe",
+            "C:\\Program Files\\DOSBox-0.74\\DOSBox.exe"
+        };
+        for (String ruta : candidatos) {
+            if (new File(ruta).exists()) return ruta;
+        }
+        try {
+            Process p = new ProcessBuilder("dosbox", "-help").start();
+            p.destroy();
+            return "dosbox";
+        } catch (IOException e) {
+            return null;
+        }
+    }
+
+    private void compilarExe() {
+        File finalAsm = new File("Final.asm");
+        if (!finalAsm.exists()) {
+            setEstado("Primero compilá el fuente para generar Final.asm.", ERR_COLOR);
+            return;
+        }
+
+        String dosbox = encontrarDosBox();
+        if (dosbox == null) {
+            JOptionPane.showMessageDialog(this,
+                "Para compilar a .exe necesitás DOSBox instalado.\n" +
+                "Descargalo de: https://www.dosbox.com (versión 0.74-3)\n" +
+                "Una vez instalado, volvé a intentarlo.",
+                "DOSBox no encontrado", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        File tasmExe = new File("tools/tasm/TASM.EXE");
+        if (!tasmExe.exists()) {
+            JOptionPane.showMessageDialog(this,
+                "No se encontró TASM.EXE en tools/tasm/ del proyecto.\n" +
+                "Copiá TASM.EXE y TLINK.EXE a esa carpeta y volvé a intentarlo.",
+                "TASM no encontrado", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        btnCompilar.setEnabled(false);
+        setEstado("Ensamblando...", ACCENT);
+
+        String dosboxFinal = dosbox;
+        SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+            boolean exito = false;
+
+            @Override
+            protected Void doInBackground() {
+                try {
+                    File projectDir = new File(".").getCanonicalFile();
+
+                    new File("Final.exe").delete();
+                    new File("Final.obj").delete();
+
+                    ProcessBuilder pb = new ProcessBuilder(
+                        dosboxFinal,
+                        "-c", "mount c " + projectDir.getAbsolutePath(),
+                        "-c", "set PATH=c:\\tools\\tasm",
+                        "-c", "c:",
+                        "-c", "tasm Final.asm",
+                        "-c", "tlink Final.obj",
+                        "-c", "exit",
+                        "-exit"
+                    );
+                    pb.redirectErrorStream(true);
+                    Process p = pb.start();
+                    p.getInputStream().transferTo(OutputStream.nullOutputStream());
+                    p.waitFor();
+
+                    exito = new File("Final.exe").exists();
+                } catch (Exception ex) {
+                    System.out.println("Error: " + ex.getMessage());
+                }
+                return null;
+            }
+
+            @Override
+            protected void done() {
+                btnCompilar.setEnabled(true);
+                if (exito) {
+                    setEstado("✓  Final.exe generado.", ACCENT2);
+                } else {
+                    setEstado("✗  Error al compilar. Revisá el ensamblador.", ERR_COLOR);
                 }
             }
         };

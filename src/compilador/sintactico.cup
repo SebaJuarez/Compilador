@@ -43,15 +43,24 @@ action code
 
     private ExprRes construirCant(List<Integer> numeros) {
         ExprRes r = new ExprRes();
+        
+        // 1. El nombre base con 2 guiones (el NodoIdentificador le agregará el 3ro)
+        String baseTemporal = "__cant" + contadorCant++;
+        
+        // 2. El nombre final para declarar en el .DATA (con 3 guiones)
+        String declaracionAsm = "_" + baseTemporal;
+        
+        currentCantVar = baseTemporal;
 
-        String temporal = "__cant" + contadorCant++;
-        currentCantVar = temporal;
+        // Lo anotamos para el .DATA con los 3 guiones bajos
+        GeneradorAssembler.declarables.add(declaracionAsm + " dd ?");
 
         List<NodoSentencia> sentencias = new ArrayList<NodoSentencia>();
 
+        // Usamos baseTemporal, el nodo se encarga de dejarlo con 3 guiones en el .CODE
         sentencias.add(
             new NodoAsignacion(
-                new NodoIdentificador(temporal),
+                new NodoIdentificador(baseTemporal),
                 new NodoNumEnt(0)
             )
         );
@@ -70,9 +79,9 @@ action code
             List<NodoSentencia> body = new ArrayList<NodoSentencia>();
             body.add(
                 new NodoAsignacion(
-                    new NodoIdentificador(temporal),
+                    new NodoIdentificador(baseTemporal),
                     new NodoSuma(
-                        new NodoIdentificador(temporal),
+                        new NodoIdentificador(baseTemporal),
                         new NodoNumEnt(1)
                     )
                 )
@@ -82,7 +91,7 @@ action code
         }
 
         r.previas = sentencias;
-        r.expr = new NodoIdentificador(temporal);
+        r.expr = new NodoIdentificador(baseTemporal);
         return r;
     }
 

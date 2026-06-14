@@ -12,4 +12,10 @@ public class NodoConstanteString extends NodoExpresion {
     public String getDescripcionNodo() {
         return "STR: " + valor;
     }
+
+    @Override
+    public ResultadoAssembler generarAssembler() {
+
+        return new ResultadoAssembler("", "_" + this.valor);
+    }
 }
