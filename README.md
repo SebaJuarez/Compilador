@@ -47,7 +47,7 @@ Los JARs ya están en `lib/`. Solo hay que registrarlos:
    - `jflex-full-1.6.1.jar`
 4. Click **Apply and Close**
 
-### 4. Instalar DOSBox
+### 4. Instalar DOSBox (Opcional Windows)
 
 DOSBox es necesario para compilar el `.asm` a `.exe`. TASM es un ensamblador de 16 bits que no corre directamente en Windows 10 de 64 bits.
 
