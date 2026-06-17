@@ -1,8 +1,8 @@
 package pruebaast.ast;
 
 public class ResultadoAssembler {
-    private String codigo;   // Las instrucciones ASM generadas
-    private String operando; // El nombre de la variable o @aux donde quedó el resultado
+    private String codigo;   //Las instrucciones ASM generadas
+    private String operando; //El nombre de la variable o @aux donde quedo el resultado
 
     public ResultadoAssembler(String codigo, String operando) {
         this.codigo = codigo;
