@@ -26,9 +26,6 @@ public class NodoSuma extends NodoExpresionBinaria {
         codigo.append("FADD\n");
         codigo.append("FSTP ").append(aux).append("\n\n"); // Guardar en el auxiliar y sacar de la pila
 
-        // IMPORTANTE: Deberás registrar 'aux' en tu Tabla de Símbolos en este punto
-        // para que luego se imprima en el .DATA
-
         return new ResultadoAssembler(codigo.toString(), aux);
     }
 }
