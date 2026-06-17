@@ -37,9 +37,9 @@ public class NodoPrograma extends Nodo {
     @Override
     public ResultadoAssembler generarAssembler() {
 
-        // PASO 1: Recorrer las sentencias PRIMERO.
-        // Esto hace que los nodos se ejecuten y vayan llenando la lista
-        // GeneradorAssembler.declarables con los @aux que necesiten.
+        //PASO 1: Recorrer las sentencias PRIMERO.
+        //Esto hace que los nodos se ejecuten y vayan llenando la lista
+        //GeneradorAssembler.declarables con los @aux que necesiten.
         StringBuilder codigoSentencias = new StringBuilder();
         for (NodoSentencia sentencia : this.sentencias) {
             ResultadoAssembler res = sentencia.generarAssembler();
@@ -48,7 +48,7 @@ public class NodoPrograma extends Nodo {
             }
         }
 
-        // PASO 2: Ahora sí armamos el archivo desde el principio
+        //PASO 2: Ahora si armamos el archivo desde el principio
         StringBuilder asm = new StringBuilder();
 
         asm.append("include macros2.asm\n");
@@ -58,10 +58,10 @@ public class NodoPrograma extends Nodo {
         asm.append(".386\n");
         asm.append(".STACK 200h\n\n");
 
-        // PASO 3: Sección de Datos (.DATA)
+        //PASO 3: Seccion de Datos (.DATA)
         asm.append(".DATA\n");
 
-        // A) Leer ts.txt y meterlo en 'declarables' para evitar duplicados
+        //A) Leer ts.txt y meterlo en 'declarables' para evitar duplicados
         try (java.io.BufferedReader br = new java.io.BufferedReader(new java.io.FileReader("ts.txt"))) {
             String linea;
             while ((linea = br.readLine()) != null) {
@@ -98,24 +98,24 @@ public class NodoPrograma extends Nodo {
             System.out.println("Error al leer la Tabla de Simbolos: " + e.getMessage());
         }
 
-        // B) Escribir TODO junto (Variables del TS + Auxiliares).
-        // Al ser un Set, no habrá NINGÚN duplicado.
+        //B) Escribir TODO junto (Variables del TS + Auxiliares).
+        //Al ser un Set, no habrá NINGUN duplicado.
         for (String declaracion : GeneradorAssembler.declarables) {
             asm.append(declaracion).append("\n");
         }
         asm.append("\n");
 
-        // PASO 4: Sección de Código (.CODE)
+        //PASO 4: Sección de Codigo (.CODE)
         asm.append(".CODE\n");
         asm.append("START:\n");
         asm.append("MOV EAX, @DATA\n");
         asm.append("MOV DS, EAX\n");
         asm.append("MOV ES, EAX\n\n");
 
-        // Pegamos las instrucciones que habíamos guardado en el PASO 1
+        //Pegamos las instrucciones que habiamos guardado en el PASO 1
         asm.append(codigoSentencias.toString());
 
-        // Fin del programa
+        //Fin del programa
         asm.append("\nMOV EAX, 4C00h\n");
         asm.append("INT 21h\n");
         asm.append("END START\n");
